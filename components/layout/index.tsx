@@ -8,14 +8,14 @@ import Works from '../work';
 import Contact from '../contact';
 import Feedbacks from '../feedbacks';
 import StartsCanvas from '../starts-canvas';
+import Header from './Header';
 
 const Layout = () => {
   return (
     <div className="bg-primary relative z-0 flex flex-col bg-[#2e1c4a] min-h-[100vh]">
-      <div className="bg-hero-pattern bg-cover bg-no-repeat">
-        <NavBar />
-        <Hero />
-      </div>
+      <NavBar />
+      <Header />
+      <Hero />
       <About />
       <Exprience />
       <Tech />
