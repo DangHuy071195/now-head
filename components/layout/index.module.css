@@ -2,13 +2,14 @@
   display: grid;
   grid-template-columns: 1fr minmax(30rem, 1fr) 1fr;
   grid-template-rows: min-content;
-  height: 90vh;
   justify-items: center;
 }
 
 .header__logo__content--logo {
   grid-column: 2 / 3;
   letter-spacing: 0.2rem;
+  height: 45px;
+  line-height: 45px;
 }
 .header__logo__content--logo span {
   color: var(--color-tertiary);
@@ -18,10 +19,11 @@
 .header__logo__content--content {
   grid-column: 1 / -1;
   align-self: center;
+  margin-top: 5rem;
 }
 
 .header__logo__content--content__title {
-  font-size: calc(4rem + 4vw);
+  font-size: calc(4rem + 2vw);
   font-weight: 300;
   color: white;
   text-transform: uppercase;
@@ -31,5 +33,5 @@
 .header__logo__content--content__para {
   font-size: calc(1rem + 2vw);
   font-weight: 500;
-  padding: 2vh 2rem 6vh var(--font-size-title);
+  padding: 2vh 2rem 12px var(--font-size-title);
 }
