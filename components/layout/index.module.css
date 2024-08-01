@@ -13,7 +13,7 @@
 }
 .header__logo__content--logo span {
   color: var(--color-tertiary);
-  font-size: 3rem;
+  font-size: calc(1rem + 1vw);
 }
 
 .header__logo__content--content {
