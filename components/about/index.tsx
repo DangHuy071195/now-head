@@ -1,35 +1,40 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ServiceCard from './ServiceCard';
+import classes from './index.module.css';
 
 const About = () => {
   const services = [
     {
       title: 'Web Development',
       description: 'Building responsive and user-friendly websites using modern web technologies.',
-      icon: 'https://example.com/angular-icon.png', // Replace with the online link to the Angular icon image
+      icon: 'fa-brands fa-react', // Replace with the online link to the Angular icon image
     },
     {
       title: 'Mobile App Development',
       description: 'Creating native and cross-platform mobile applications for iOS and Android.',
-      icon: 'https://example.com/react-icon.png', // Replace with the online link to the React icon image
+      icon: 'fa-brands fa-react', // Replace with the online link to the React icon image
     },
     {
       title: 'UI/UX Design',
       description: 'Designing intuitive and visually appealing user interfaces for web and mobile applications.',
-      icon: 'https://example.com/vuejs-icon.png', // Replace with the online link to the Vue.js icon image
+      icon: 'fa-brands fa-react', // Replace with the online link to the Vue.js icon image
     },
-    // Add more services here
+    {
+      title: 'API Development',
+      description: 'Developing RESTful APIs and microservices for web and mobile applications.',
+      icon: 'fa-brands fa-react', // Replace with the online link to the Node.js icon image
+    },
   ];
 
   return (
-    <div>
+    <div className={classes.about}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}>
-        <p className="">Introduction</p>
-        <p className="">
+        <p className={classes.title}>Introduction</p>
+        <p className={classes.desc}>
           I am a software engineer who is passionate about creating and developing software applications. I have a
           strong foundation in computer science and software engineering principles. I am always looking for
           opportunities to learn and grow as a software engineer. I am proficient in a variety of programming languages
@@ -40,7 +45,7 @@ const About = () => {
           challenges to tackle.
         </p>
         <h2>Services</h2>
-        <div className="flex flex-wrap gap-10 mt-20">
+        <div className={classes.services}>
           {services.map((service, index) => (
             <ServiceCard
               key={index}
