@@ -6,24 +6,24 @@ import classes from './index.module.css';
 const About = () => {
   const services = [
     {
-      title: 'Web Development',
+      title: 'Web',
       description: 'Building responsive and user-friendly websites using modern web technologies.',
       icon: 'fa-brands fa-react', // Replace with the online link to the Angular icon image
     },
     {
-      title: 'Mobile App Development',
+      title: 'Mobile App',
       description: 'Creating native and cross-platform mobile applications for iOS and Android.',
-      icon: 'fa-brands fa-react', // Replace with the online link to the React icon image
+      icon: 'fa-brands fa-vuejs', // Replace with the online link to the React icon image
     },
     {
       title: 'UI/UX Design',
       description: 'Designing intuitive and visually appealing user interfaces for web and mobile applications.',
-      icon: 'fa-brands fa-react', // Replace with the online link to the Vue.js icon image
+      icon: 'fa-brands fa-angular', // Replace with the online link to the Vue.js icon image
     },
     {
-      title: 'API Development',
+      title: 'API',
       description: 'Developing RESTful APIs and microservices for web and mobile applications.',
-      icon: 'fa-brands fa-react', // Replace with the online link to the Node.js icon image
+      icon: 'fa-brands fa-node-js', // Replace with the online link to the Node.js icon image
     },
   ];
 
@@ -44,7 +44,7 @@ const About = () => {
           in a team-based environment. I am a quick learner and a problem solver, and I am always looking for new
           challenges to tackle.
         </p>
-        <h2>Services</h2>
+        <h2 className="text-[24px] mb-[20px]">Services</h2>
         <div className={classes.services}>
           {services.map((service, index) => (
             <ServiceCard

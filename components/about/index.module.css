@@ -72,10 +72,16 @@
 
 .content {
   position: relative;
-  padding: 100px 20px;
+  padding: 150px 20px;
   padding-bottom: 20px;
   background: #060c21;
   color: #fff;
+  min-height: 500px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 }
 
 .box::before {
@@ -147,7 +153,7 @@
   right: 20px;
   margin: 0;
   padding: 0;
-  font-size: 3rem;
+  font-size: 14rem;
   color: rgba(255, 255, 255, 0.05);
   transition: 0.25s;
 }
@@ -194,4 +200,11 @@
 .box .content a:hover {
   background: rgba(255, 255, 255, 0.95);
   color: #222;
+}
+.box i {
+  transition: all 0.5s ease;
+}
+
+.box:hover i {
+  scale: 1.5;
 }

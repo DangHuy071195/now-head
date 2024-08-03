@@ -1,0 +1,30 @@
+.experience {
+  text-align: left;
+  color: white;
+  padding: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  max-width: 70vw;
+  margin: auto;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.heading {
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  margin-top: 5px;
+}
+.verticalTimeline {
+  width: 70vw !important;
+}
