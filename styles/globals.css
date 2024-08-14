@@ -34,3 +34,14 @@
   /* Section Padding */
   --padding-section: 8vh 3vw;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+input {
+  outline: none;
+}

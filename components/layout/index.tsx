@@ -9,6 +9,7 @@ import Contact from '../contact';
 import Feedbacks from '../feedbacks';
 import StartsCanvas from '../starts-canvas';
 import Header from './Header';
+import StarCanvas from '../starts-canvas';
 
 const Layout = () => {
   return (
@@ -21,9 +22,9 @@ const Layout = () => {
       <Tech />
       <Works />
       <Feedbacks />
-      <div className="relateive z-0">
+      <div className="relative z-0 h-screen flex items-center justify-start px-96">
+        <StarCanvas />
         <Contact />
-        <StartsCanvas />
       </div>
     </div>
   );
