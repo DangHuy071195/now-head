@@ -6,7 +6,7 @@
 }
 .header__main-nav input {
   position: absolute;
-  top: 45px;
+  top: 24px;
   left: 3rem;
   cursor: pointer;
   opacity: 0;
@@ -16,7 +16,7 @@
 }
 .header__main-nav--hamburger {
   position: absolute;
-  top: 45px;
+  top: 24px;
   left: 3rem;
   width: 5rem;
   height: 5rem;

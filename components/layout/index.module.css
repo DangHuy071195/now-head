@@ -3,6 +3,8 @@
   grid-template-columns: 1fr minmax(30rem, 1fr) 1fr;
   grid-template-rows: min-content;
   justify-items: center;
+  padding-top: 24px;
+  height: 5rem;
 }
 
 .header__logo__content--logo {
