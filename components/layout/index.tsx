@@ -13,7 +13,7 @@ import StarCanvas from '../starts-canvas';
 
 const Layout = () => {
   return (
-    <div className="bg-primary relative z-0 flex flex-col bg-[#03001C] min-h-[100vh]">
+    <div className="bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh]">
       <NavBar />
       <Header />
       <Hero />

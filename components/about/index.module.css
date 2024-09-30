@@ -40,8 +40,7 @@
 
 .about {
   padding: 3rem;
-
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 .title {
   font-size: calc(1.5rem + 0.5vw);

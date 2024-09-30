@@ -46,41 +46,12 @@ const projects = [
     image: '/resources/tutorials.png',
     tags: ['React', 'Django', 'SQLite'],
   },
-  {
-    title: 'Project 3',
-    description:
-      'Description of Project Description of Project Description of ProjectDescription of ProjectDescription of Project 3',
-    image: '/resources/quizz.png',
-    tags: ['React', 'Firebase', 'Firestore'],
-  },
-  {
-    title: 'Project 4',
-    description:
-      'Description of Project Description of Project Description of ProjectDescription of ProjectDescription of Project 4',
-    image: '/resources/tutorials.png',
-    tags: ['React', 'Django', 'SQLite'],
-  },
-  {
-    title: 'Project 3',
-    description:
-      'Description of Project Description of Project Description of ProjectDescription of ProjectDescription of Project 3',
-    image: '/resources/quizz.png',
-    tags: ['React', 'Firebase', 'Firestore'],
-  },
-  {
-    title: 'Project 4',
-    description:
-      'Description of Project Description of Project Description of ProjectDescription of ProjectDescription of Project 4',
-    image: '/resources/tutorials.png',
-    tags: ['React', 'Django', 'SQLite'],
-  },
 ];
 
 const Works = () => {
   return (
     <div className={classes.work}>
-      <h2 className={classes.subTitle}>My Work</h2>
-      <h3 className={classes.title}>Project</h3>
+      <h3 className={classes.title}>Projects</h3>
       <div className={classes.projects}>
         {projects.map((project, index) => (
           <Tilt key={index}>

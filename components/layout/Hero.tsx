@@ -15,10 +15,11 @@ const Hero = () => {
               Hi, I'm <span className="text-[#915eff]">HuyItto</span>
             </h1>
             <p className="mt-2 text-white-100 text-[20px]">
-              I'm React developer, user <br className="sm:block hidden" /> interface and web applications I'm also a 3D
-              developer, specializing in creating immersive and interactive experiences using cutting-edge technologies.
-              With my expertise in both React and 3D development, I can bring your ideas to life and deliver stunning
-              visual experiences that engage and captivate users.
+              Im software engineer with experience in building web and mobile applications. I specialize in front-end
+              development and UI/UX design. I am passionate about creating intuitive and visually appealing user
+              interfaces for web and mobile applications. I also develop RESTful APIs and microservices for web and
+              mobile applications. Game development is my hobby. I have experience in developing games using Unity and
+              Unreal Engine.
             </p>
           </div>
         </div>

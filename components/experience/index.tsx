@@ -5,28 +5,30 @@ import ExperienceCard from './ExperienceCard';
 import { VerticalTimeline } from 'react-vertical-timeline-component';
 const experiences = [
   {
-    date: '2019 - 2020',
+    date: '2019 - 2021',
     icon: 'fa-brands fa-node-js',
     iconBg: '#e0a82e',
     title: 'Software Engineer',
-    company_name: 'Tech Company A',
+    company_name: 'VMO Company',
     points: [
       'Developed and maintained web applications using React and Node.js',
       'Collaborated with cross-functional teams to deliver high-quality products',
       'Implemented CI/CD pipelines to improve deployment processes',
+      'Developer blockchain applications using Ethereum and Solidity',
     ],
   },
   {
-    date: '2020 - 2021',
+    date: '2022 - 2024',
     icon: 'fa-brands fa-node-js',
 
     iconBg: '#d9534f',
     title: 'Frontend Developer',
-    company_name: 'Tech Company B',
+    company_name: 'Gobiz Company',
     points: [
       'Created responsive user interfaces using HTML, CSS, and JavaScript',
       'Worked closely with designers to implement UI/UX improvements',
       'Optimized web applications for maximum speed and scalability',
+      'Developed e-commerce websites for fullfillment logistics',
     ],
   },
   {
