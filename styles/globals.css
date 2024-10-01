@@ -7,7 +7,7 @@
 :root {
   color: #fff;
   font-size: 62.5% !important;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Space Mono', monospace;
   /* Colors */
   --color-primary: #730039;
   --color-primary-m-light: hsla(330, 100%, 23%, 0.55);
