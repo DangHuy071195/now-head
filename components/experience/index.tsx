@@ -5,10 +5,10 @@ import ExperienceCard from './ExperienceCard';
 import { VerticalTimeline } from 'react-vertical-timeline-component';
 const experiences = [
   {
-    isStart: true,
+    isEnd: true,
     date: '2019 - 2021',
     icon: 'fa-brands fa-node-js',
-    iconBg: '#7C72FF ',
+    iconBg: '#7C72FF',
     title: 'Session about where from start developer',
     company_name: 'VMO Company',
     points: [
@@ -30,7 +30,7 @@ const experiences = [
       'Optimized web applications for maximum speed and scalability',
       'Developed e-commerce websites for fullfillment logistics',
     ],
-    isStart: true,
+    isEnd: true,
   },
   {
     isMiddle: true,
@@ -49,6 +49,19 @@ const experiences = [
     date: '2021 - 2022',
     icon: 'fa-brands fa-node-js',
     iconBg: ['#7C72FF', '#7C72FF'],
+    title: 'Make it professional',
+    company_name: 'Tech Company C',
+    points: [
+      'Built RESTful APIs with Express and MongoDB',
+      'Integrated third-party APIs to enhance application functionality',
+      'Ensured cross-browser compatibility and responsiveness',
+    ],
+    isEnd: true,
+  },
+  {
+    date: '2021 - 2022',
+    icon: 'fa-brands fa-node-js',
+    iconBg: ['#33b3ae 80%', 'transparent'],
     title: 'Make it professional',
     company_name: 'Tech Company C',
     points: [

@@ -24,9 +24,9 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
             background: isStart
               ? `linear-gradient(transparent, ${lineGradiendt})`
               : isEnd
-                ? `linear-gradient(${lineGradiendt}), transparent`
+                ? `linear-gradient(${lineGradiendt}, transparent)`
                 : isMiddle
-                  ? `linear-gradient(${lineGradiendt}) transparent`
+                  ? `linear-gradient(${lineGradiendt}, transparent)`
                   : '',
           }}></div>
       </div>
