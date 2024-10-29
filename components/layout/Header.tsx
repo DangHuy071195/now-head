@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
 import classes from './index.module.css';
-
+import { useRouter } from 'next/navigation';
 const Header = () => {
+  const router = useRouter();
   return (
     <div className={classes['header__logo__content']}>
       <Link
@@ -17,6 +18,22 @@ const Header = () => {
           doloremque fugit exercitationem itaque laborum vel, earum optio!
         </p>
       </div> */}
+      <div className={classes['social-login']}>
+        <button
+          className={classes['sign-in']}
+          onClick={() => {
+            router.push('/sign-in');
+          }}>
+          Sign In
+        </button>
+        <button
+          className={classes['sign-up']}
+          onClick={() => {
+            router.push('/sign-up');
+          }}>
+          Sign up here!!
+        </button>
+      </div>
     </div>
   );
 };

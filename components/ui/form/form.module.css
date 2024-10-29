@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.form input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: #232323;
+}
