@@ -9,4 +9,13 @@
   margin-top: 2.4rem;
   margin-left: auto;
   font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  box-shadow: 1px 0 0.8rem 1px rgba(209, 128, 242, 0.75);
 }

@@ -1,0 +1,41 @@
+.singUp__form {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 20vw;
+  margin: 0 auto;
+  margin-top: 18vh;
+  background-color: #392467;
+  border-radius: 0.6rem;
+  padding: 2.4rem;
+}
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.socials button {
+  margin-top: 1.2rem;
+  max-width: 100%;
+  width: 100%;
+}
+
+.socials button:first-child {
+  background-color: white;
+  color: #392467;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.socials button:nth-child(2) {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  color: #392467;
+}

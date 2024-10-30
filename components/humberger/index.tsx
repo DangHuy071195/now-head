@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import styles from './HamburgerMenu.module.css';
 import Link from 'next/link';
 const HamburgerMenu = () => {
-  console.log(`styles`, styles);
   const menuItems = ['Home', 'About', 'Tech', 'Job'];
 
   return (
