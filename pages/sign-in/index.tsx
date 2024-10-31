@@ -4,14 +4,15 @@ import FormItem from '@/components/ui/form/FormItem';
 import PrimaryButton from '@/components/ui/button/PrimaryButton';
 import Image from 'next/image';
 import OTPComponent from '@/components/phone-login';
+import axios from 'axios';
 
 const SignIn = () => {
   const [isPhoneSignIn, setIsPhoneSignIn] = useState(false);
 
   const submitHandler = () => {};
 
-  const googleSignHandler = () => {
-    console.log('Google Sign In');
+  const googleSignHandler = async () => {
+    window.location.href = 'http://localhost:5000/auth/google';
   };
   const githubSignHandler = () => {
     console.log('Github Sign In');

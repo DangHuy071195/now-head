@@ -1,5 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, {  useEffect, useState } from 'react';
 import ComputerCanvas from '../computer';
 const Hero = () => {
   const refHeroDesc = React.useRef<HTMLDivElement>(null);

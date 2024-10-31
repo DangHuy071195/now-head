@@ -7,3 +7,6 @@
   height: 3.2rem;
   font-size: 1.2rem;
 }
+.recaptcha-container {
+  display: none;
+}

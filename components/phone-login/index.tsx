@@ -1,56 +1,110 @@
 //@ts-nocheck
-import React, { useEffect, useState } from 'react';
-import { auth } from '../../libs/firebase';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
-
-import classes from './index.module.css';
+import React, { useEffect, useState } from 'react';
+import 'react-phone-input-2/lib/style.css';
+import { auth } from '../../libs/firebase';
+import { ToastContainer } from 'react-toastify';
+import PhoneInput from 'react-phone-input-2';
 import PrimaryButton from '../ui/button/PrimaryButton';
+import classes from './index.module.css';
+import { toast } from 'react-toastify';
+import { Button } from 'antd';
+import axios from 'axios';
 const OTPComponent: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [isCooldown, setIsCooldown] = useState(false);
+  const [cooldownTime, setCooldownTime] = useState(60); // 60 seconds
+
   const [otp, setOtp] = useState<string>('');
   const [confirmationResult, setConfirmationResult] = useState<any>(null);
   const [message, setMessage] = useState<string>('');
   const [isOtpSent, setIsOtpSent] = useState<boolean>(false);
-  console.log(`auth`, auth);
-
+  const setupRecaptcha = () => {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        size: 'invisible',
+        callback: (response) => {
+          console.log('reCAPTCHA solved');
+        },
+        'expired-callback': () => {
+          console.warn('reCAPTCHA expired; resetting');
+          window.recaptchaVerifier.reset(); // Reset if expired
+        },
+      });
+    }
+  };
   useEffect(() => {
-    const setupRecaptcha = () => {
-      if (!window.recaptchaVerifier) {
-        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container');
-      }
-    };
-
     setupRecaptcha();
   }, []);
 
   // Send OTP
   const sendOtpHandler = async () => {
     console.log(`sent otp`);
+    if (isCooldown) {
+      alert(`Please wait ${cooldownTime} seconds before trying again.`);
+      return;
+    }
+
+    setupRecaptcha();
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        size: 'invisible',
+        callback: (response) => {
+          console.log('reCAPTCHA solved');
+        },
+        'expired-callback': () => {
+          console.warn('reCAPTCHA expired; resetting');
+          window.recaptchaVerifier.reset(); // Reset if expired
+        },
+      });
+    } else {
+      setupRecaptcha();
+    }
     try {
       const appVerifier = window.recaptchaVerifier;
       const result = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
+      setIsCooldown(true);
+      const interval = setInterval(() => {
+        setCooldownTime((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            setIsCooldown(false);
+            return 60;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      console.log(`result`, result);
       setConfirmationResult(result);
       setIsOtpSent(true);
-      setMessage('OTP sent to your phone.');
+      toast.success('OTP sent successfully!');
     } catch (error) {
       console.error('Error sending OTP:', error);
-      setMessage('Failed to send OTP. Please try again.');
+      if (error.message === 'auth/too-many-requests' || error.message === 'TOO_MANY_ATTEMPTS_TRY_LATER') {
+        toast.error('Too many requests. Please try again later.');
+      } else {
+        toast.error('Failed to send OTP. Please try again.');
+      }
     }
   };
 
   // Verify OTP
   const verifyOtpHandler = async () => {
     if (!confirmationResult) {
-      setMessage('Please request an OTP first.');
+      toast.warning('Please request an OTP first.');
       return;
     }
 
     try {
-      await confirmationResult.confirm(otp);
-      setMessage('Phone number verified successfully!');
+      const result = await confirmationResult.confirm(otp);
+      console.log(`result`, result);
+      const firebaseToken = await result.user.getIdToken();
+      console.log(`firebaseToken`, firebaseToken);
+      const res = await axios.post('api/user/auth/phone-login', { token: firebaseToken });
+      toast.success('Phone number verified successfully!');
     } catch (error) {
       console.error('Error verifying OTP:', error);
-      setMessage('Invalid OTP. Please try again.');
+      toast.error(error.message);
     }
   };
 
@@ -58,18 +112,20 @@ const OTPComponent: React.FC = () => {
     <div>
       {!isOtpSent ? (
         <>
-          <input
-            className={classes.input}
-            type="text"
+          <PhoneInput
+            country={'vn'}
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            placeholder="+1234567890"
-            required
+            onChange={(phone) => setPhoneNumber(`+${phone}`)}
+            inputStyle={{ width: '100%' }}
+            enableSearch
+            countryCodeEditable
+            autoFormat={false}
           />
+
           <PrimaryButton
             type="button"
             onClick={sendOtpHandler}>
-            Send OTP
+            {isCooldown ? `Wait ${cooldownTime} seconds` : 'Send OTP'}
           </PrimaryButton>
         </>
       ) : (
@@ -80,12 +136,18 @@ const OTPComponent: React.FC = () => {
             onChange={(e) => setOtp(e.target.value)}
             placeholder="Enter OTP"
             required
+            className={classes['input']}
           />
-          <PrimaryButton onClick={verifyOtpHandler}>Verify OTP</PrimaryButton>
+          <PrimaryButton
+            type={'button'}
+            onClick={verifyOtpHandler}>
+            Verify OTP
+          </PrimaryButton>
         </>
       )}
-      <div id="recaptcha-container"></div>
-      {message && <p>{message}</p>}
+      <div
+        id="recaptcha-container"
+        className={classes['recaptcha-container']}></div>
     </div>
   );
 };

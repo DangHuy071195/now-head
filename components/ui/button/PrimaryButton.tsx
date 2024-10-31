@@ -16,7 +16,7 @@ const PrimaryButton: React.FC<PrimaryButtonPropsI> = ({ children, icon, size, ty
       style={style}
       onClick={onClick}
       type={type}>
-      {icon && <i className={icon} />}
+      {icon && <i className={`${icon} mr-[0.4rem]`} />}
       {children}
     </button>
   );
