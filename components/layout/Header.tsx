@@ -2,8 +2,13 @@ import Link from 'next/link';
 import React from 'react';
 import classes from './index.module.css';
 import { useRouter } from 'next/navigation';
+import { useTypedSelector } from '@/hooks/useSelector';
+import { useActions } from '@/hooks/useAction';
 const Header = () => {
   const router = useRouter();
+  const selector = useTypedSelector((state) => state.user);
+  console.log(`selector`, selector);
+  const { logout } = useActions();
   return (
     <div className={classes['header__logo__content']}>
       <Link
@@ -25,6 +30,14 @@ const Header = () => {
             router.push('/sign-in');
           }}>
           Sign In
+        </button>
+        <button
+          className={classes['sign-in']}
+          style={{ color: '#fff' }}
+          onClick={() => {
+            logout();
+          }}>
+          Sign Out
         </button>
         <button
           className={classes['sign-up']}

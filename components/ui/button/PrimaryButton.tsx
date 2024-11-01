@@ -6,7 +6,7 @@ interface PrimaryButtonPropsI {
   size?: number;
   style?: React.CSSProperties;
   type?: 'button' | 'submit' | 'reset';
-  onClick?: () => void;
+  onClick?: (e: any) => void;
 }
 
 const PrimaryButton: React.FC<PrimaryButtonPropsI> = ({ children, icon, size, type, style, onClick }) => {
