@@ -16,7 +16,7 @@ const FormItem: React.FC<FormItemPropsI> = ({ forLabel, type, labelStr, onChange
       <div className={classes.combobox}>
         <label
           htmlFor={forLabel}
-          className={`${classes.label} ${isFocused ? classes.focused : ''}`}>
+          className={`${classes.label}  ${isFocused || value ? classes.focused : classes['visible-none']} `}>
           {labelStr}
         </label>
         <input

@@ -1,14 +1,11 @@
 .header__logo__content {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 5rem;
-  justify-items: center;
-  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .header__logo__content--logo {
-  grid-column: 2/ 6;
   letter-spacing: 0.2rem;
   height: 45px;
   line-height: 45px;
@@ -20,7 +17,6 @@
   font-size: calc(1rem + 1vw);
 }
 .social-login {
-  grid-column: 6/7;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -85,7 +81,7 @@
   background: transparent;
 }
 
-.sign-up:hover:before {
+.sign-up::before {
   opacity: 1;
 }
 

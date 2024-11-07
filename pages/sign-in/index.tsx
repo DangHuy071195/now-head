@@ -3,17 +3,24 @@ import PrimaryButton from '@/components/ui/button/PrimaryButton';
 import FormItem from '@/components/ui/form/FormItem';
 import { createUser, githubSignIn, googleSignIn, passwordValidate } from '@/libs/firebase';
 import Image from 'next/image';
-import { useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import classes from './sign-in.module.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useActions } from '@/hooks/useAction';
+import { useTypedSelector } from '@/hooks/useSelector';
+import { HashLoader } from 'react-spinners';
+import { useRouter } from 'next/router';
+
 const SignIn = () => {
   const [isPhoneSignIn, setIsPhoneSignIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ email: any; password: any }>({ email: [], password: [] });
   const { login } = useActions();
+  const { loading, accessToken, user } = useTypedSelector((state) => state.user);
+  const router = useRouter();
+
   const submitHandler = async (e: any) => {
     e.preventDefault();
     if (!email || email === '') {
@@ -22,6 +29,7 @@ const SignIn = () => {
         const curErrorsUpdated = [...curErrors, 'Please enter email'];
         return { ...prev, email: curErrorsUpdated };
       });
+      return;
     }
     if (!password || password === '') {
       setErrors((prev) => {
@@ -29,10 +37,14 @@ const SignIn = () => {
         const curErrorsUpdated = [...curErrors, 'Please enter password'];
         return { ...prev, password: curErrorsUpdated };
       });
+      return;
     }
     const status = await passwordValidate(password);
     if (status?.isValid) {
-      await createUser(email, password);
+      const res = await createUser(email, password);
+      const token = res.userToken;
+      await login(res, 'email', token);
+      toast.success('Sign In successfully!');
     } else {
       console.log(`status`, status);
       const meetsMinPasswordLength = status?.meetsMinPasswordLength;
@@ -58,30 +70,32 @@ const SignIn = () => {
       setErrors((prevPwd) => {
         return { ...prevPwd, password: errorsPassword };
       });
+      if (errorsPassword.length > 0) {
+        return;
+      }
     }
   };
 
-  const googleSignHandler = async () => {
-    // window.location.href = 'http://localhost:5000/auth/google';
+  const siginWithProvider = async (provider: string) => {
     try {
-      const res: any = await googleSignIn();
-      console.log(`res`, res);
+      let res;
+      if (provider === 'google') {
+        res = await googleSignIn();
+      }
+      if (provider === 'github') {
+        res = await githubSignIn();
+      }
       const userToken = res.token;
-      login(userToken, 'google');
-      // toast.success('Google Sign In successfully!');
-    } catch (error) {
-      toast.error('Failed to sign in with Google');
-    }
-  };
-  const githubSignHandler = async () => {
-    console.log('Github Sign In');
-    try {
-      const res = await githubSignIn();
-      const userToken = res.token;
-      login(userToken, 'github');
-      // toast.success('Github Sign In successfully!');
-    } catch (error) {
-      toast.error('Failed to sign in with Google');
+      await login(userToken, provider);
+      router.push('/');
+      toast.success(`${provider.toLocaleUpperCase()} Sign In successfully!`);
+    } catch (error: any) {
+      console.log(`error`, error);
+      if (error.code === 'auth/account-exists-with-different-credential') {
+        toast.error('An account already exists with the same email address but different sign-in credentials.');
+      } else {
+        toast.error(`Failed to sign in with ${provider.toLocaleUpperCase()}`);
+      }
     }
   };
 
@@ -89,8 +103,9 @@ const SignIn = () => {
     console.log('Phone Sign In');
     setIsPhoneSignIn(true);
   };
+
   return (
-    <>
+    <Suspense fallback={<HashLoader />}>
       <h2>Sign In</h2>
       <form
         className={classes['singUp__form']}
@@ -118,7 +133,7 @@ const SignIn = () => {
         or
         <div className={classes.socials}>
           <PrimaryButton
-            onClick={googleSignHandler}
+            onClick={() => siginWithProvider('google')}
             type="button">
             <Image
               className="google-icon"
@@ -131,7 +146,7 @@ const SignIn = () => {
           </PrimaryButton>
           <PrimaryButton
             type="button"
-            onClick={githubSignHandler}>
+            onClick={() => siginWithProvider('github')}>
             <Image
               className="github-icon"
               src="/github.png"
@@ -141,6 +156,7 @@ const SignIn = () => {
             />
             Github
           </PrimaryButton>
+          {loading && <p>Loading...</p>}
           {!isPhoneSignIn && (
             <PrimaryButton
               icon={'fa-solid fa-phone'}
@@ -151,7 +167,7 @@ const SignIn = () => {
           {isPhoneSignIn && <OTPComponent />}
         </div>
       </form>
-    </>
+    </Suspense>
   );
 };
 

@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] });
 export default function Home() {
   return (
     <>
-      <div style={{ maxWidth: 1024, margin: 'auto' }}>
+      <div style={{}}>
         <Hero />
         <About />
         <Exprience />

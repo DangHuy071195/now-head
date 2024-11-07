@@ -7,10 +7,10 @@ const HamburgerMenu = () => {
 
   return (
     <div className={styles['header__main-nav']}>
-      <input type="checkbox" />
+      {/* <input type="checkbox" />
       <div className={styles['header__main-nav--hamburger']}>
         <div></div>
-      </div>
+      </div> */}
       <div className={styles['header__main-nav--menu']}>
         <div>
           <div>

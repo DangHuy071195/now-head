@@ -3,7 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    const resGoogleAuth = await axios.post(`http:127.0.0.1:5000/auth/google`, {}, {
+    console.log(`run with github...`)
+    const resGoogleAuth = await axios.post(`http://127.0.0.1:5000/auth/google`, {}, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${req.body.token}`

@@ -7,11 +7,11 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)', // Adjust this path as needed
+        source: '/(.*)',
         headers: [
           {
-            key: 'Content-Security-Policy',
-            value: "frame-ancestors 'self' https://www.google.com", // Add allowed domains here
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin-allow-popups',
           },
         ],
       },
