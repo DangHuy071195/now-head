@@ -80,7 +80,7 @@ const Layout: React.FC<LayoutPropsI> = ({ children }) => {
     return () => unsubscribe();
   }, []);
   return (
-    <div className="bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh] p-[24px]">
+    <div className="bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh] max-w-[1024px] m-auto">
       {/* <NavBar /> */}
       <Header user={user} />
       <ToastContainer />

@@ -6,26 +6,24 @@ import { VerticalTimeline } from 'react-vertical-timeline-component';
 const experiences = [
   {
     isEnd: true,
-    date: '2019 - 2021',
+    date: '2023-Present',
     icon: 'fa-brands fa-node-js',
     iconBg: '#7C72FF',
-    title: 'Session about where from start developer',
-    company_name: 'VMO Company',
+    title: 'Web,App,Chrome Extension Developer',
+    company_name: 'Maxtrust',
     points: [
-      'What kind of tech you need follow and focus its',
+      'Development web app, chrome extension for emcommerce and logistic',
       'Collaborated with cross-functional teams to deliver high-quality products',
-      'Implemented CI/CD pipelines to improve deployment processes',
-      'Developer blockchain applications using Ethereum and Solidity',
     ],
   },
   {
-    date: '2022 - 2024',
+    date: '2021-2023',
     icon: 'fa-brands fa-node-js',
     iconBg: ['#7C72FF', '#2DA44E 80%', '#3FB950'],
-    title: 'Evol multiple skilss',
-    company_name: 'Gobiz Company',
+    title: 'React JS Developer',
+    company_name: 'Gobiz',
     points: [
-      'Created responsive user interfaces using HTML, CSS, and JavaScript',
+      'Build my company product about Logistic base on React.js with typescript, and chrome extensions...',
       'Worked closely with designers to implement UI/UX improvements',
       'Optimized web applications for maximum speed and scalability',
       'Developed e-commerce websites for fullfillment logistics',
@@ -34,51 +32,48 @@ const experiences = [
   },
   {
     isMiddle: true,
-    date: '2022 - Present',
+    date: '2020-2021',
     icon: 'fa-brands fa-node-js',
     iconBg: ['#3fb950', '#71cc82'],
-    title: 'Senior Software Engineer',
-    company_name: 'Tech Company D',
+    title: 'MERN, Blockchain FREHSER',
+    company_name: 'VMO',
     points: [
-      'Leading a team of developers to build scalable web applications',
-      'Architecting and implementing complex features and services',
-      'Mentoring junior developers and conducting code reviews',
+      'Make a web app  for user can be create more token standard through smartcontrat',
+      'Make platform, money market protocol, allows lenders to provide loans and borrowers to make loans. From there users can earn interest in cryptocurrency based on VENUS protocol',
+      'Support FE to fix production bugs for satellite projects',
     ],
   },
+  // {
+  //   date: '2020-2021',
+  //   icon: 'fa-brands fa-node-js',
+  //   iconBg: ['#7C72FF', '#7C72FF'],
+  //   title: 'PHP Developer',
+  //   company_name: 'MOR JSC',
+  //   points: [
+  //     'Built RESTful APIs with PHP, CodeIgniter and MySQL',
+  //     'Integrated third-party APIs to enhance application functionality',
+  //   ],
+  //   isEnd: true,
+  // },
   {
-    date: '2021 - 2022',
+    date: '2017-2020',
     icon: 'fa-brands fa-node-js',
-    iconBg: ['#7C72FF', '#7C72FF'],
-    title: 'Make it professional',
-    company_name: 'Tech Company C',
-    points: [
-      'Built RESTful APIs with Express and MongoDB',
-      'Integrated third-party APIs to enhance application functionality',
-      'Ensured cross-browser compatibility and responsiveness',
-    ],
-    isEnd: true,
-  },
-  {
-    date: '2021 - 2022',
-    icon: 'fa-brands fa-node-js',
-    iconBg: ['#33b3ae 80%', 'transparent'],
-    title: 'Make it professional',
-    company_name: 'Tech Company C',
-    points: [
-      'Built RESTful APIs with Express and MongoDB',
-      'Integrated third-party APIs to enhance application functionality',
-      'Ensured cross-browser compatibility and responsiveness',
-    ],
+    iconBg: ['#33b3ae', 'transparent'],
+    title: 'Student at',
+    company_name: 'CodeGym, Aptech',
+    points: ['CodeGym . programming training center '],
     isEnd: true,
   },
 ];
 
 const Exprience = () => {
   return (
-    <div>
-      <h2 className={classes.heading}>What i have done so far</h2>
+    <section
+      id="experienced"
+      className="flex items-center flex-col ">
+      <h2 className={`${classes.heading} text-center text-[24px] mb-[24px]`}>What i have done so far</h2>
       {/* <h2 className={classes.title}>Work Experience</h2> */}
-      <div className="experiences">
+      <div className={classes['experiences']}>
         {experiences.map((experience, index) => (
           <ExperienceCard
             key={index}
@@ -86,7 +81,7 @@ const Exprience = () => {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -17,7 +17,7 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
   const { loading, user: userStore, accessToken, error } = useTypedSelector((state) => state.user);
 
   return (
-    <div className={classes['header__logo__content']}>
+    <div className={`${classes['header__logo__content']} `}>
       {/* <div className={classes['header__logo__content--content']}>
         <h1 className={classes['header__logo__content--content__title']}>Welcome to my profile</h1>
         <p className={classes['header__logo__content--content__para']}>
@@ -25,49 +25,42 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
           doloremque fugit exercitationem itaque laborum vel, earum optio!
         </p>
       </div> */}
-      <Image
+      {/* <Image
         alt="logo"
         src={'/logo.png'}
-        width={80}
-        height={80}
+        width={60}
+        height={60}
         className="rounded-full "
+      /> */}
+      {/* <SearchInput /> */}
+      <Image
+        src="/kid.jpg"
+        alt="logo"
+        width={100}
+        height={100}
+        className="rounded-full"
       />
-      <SearchInput />
-      <>{console.log(`user`, user)}</>
-      <div className={classes['social-login']}>
-        {!user ? (
-          <button
-            className={`${classes['sign-in']} text-white`}
-            onClick={() => {
-              router.push('/sign-in');
-            }}>
-            Sign In
-          </button>
-        ) : (
-          <button
-            className={classes['sign-in']}
-            style={{ color: '#fff' }}
-            onClick={() => {
-              logout();
-              if (!loading && !error && !user) {
-                router.push('/sign-in');
-              }
-            }}>
-            Sign Out
-          </button>
-        )}
-        {!user && (
-          <>
-            <span className="text-white text-[18px]">|</span>
-            <button
-              className={classes['sign-up']}
-              onClick={() => {
-                router.push('/sign-up');
-              }}>
-              Sign up here!!
-            </button>
-          </>
-        )}
+      <div className="flex justify-between flex-0.5">
+        <Link
+          className={classes['header-item']}
+          href={'/'}>
+          Home
+        </Link>
+        <Link
+          className={classes['header-item']}
+          href={'/'}>
+          Services
+        </Link>
+        <Link
+          className={classes['header-item']}
+          href={'/'}>
+          Contact
+        </Link>
+        <Link
+          className={classes['header-item']}
+          href={'/'}>
+          About
+        </Link>
       </div>
     </div>
   );
