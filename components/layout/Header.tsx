@@ -1,20 +1,15 @@
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import classes from './index.module.css';
-import { useRouter } from 'next/navigation';
-import { useTypedSelector } from '@/hooks/useSelector';
-import { useActions } from '@/hooks/useAction';
-import Image from 'next/image';
-import SearchInput from '../ui/search-input';
 interface HeaderPropsI {
   user: any;
 }
 const Header: React.FC<HeaderPropsI> = ({ user }) => {
   const router = useRouter();
-  const selector = useTypedSelector((state) => state.user);
-  console.log(`selector`, selector);
-  const { logout } = useActions();
-  const { loading, user: userStore, accessToken, error } = useTypedSelector((state) => state.user);
+  // const selector = useTypedSelector((state) => state.user);
+  // const { logout } = useActions();
+  // const { loading, user: userStore, accessToken, error } = useTypedSelector((state) => state.user);
 
   return (
     <div className={`${classes['header__logo__content']} `}>

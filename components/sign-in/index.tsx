@@ -3,22 +3,19 @@ import PrimaryButton from '@/components/ui/button/PrimaryButton';
 import FormItem from '@/components/ui/form/FormItem';
 import { createUser, githubSignIn, googleSignIn, passwordValidate } from '@/libs/firebase';
 import Image from 'next/image';
-import { Suspense, useEffect, useState } from 'react';
-import classes from './sign-in.module.css';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { useActions } from '@/hooks/useAction';
-import { useTypedSelector } from '@/hooks/useSelector';
-import { HashLoader } from 'react-spinners';
 import { useRouter } from 'next/router';
+import { Suspense, useState } from 'react';
+import { HashLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
+import classes from './sign-in.module.css';
 
 const SignIn = () => {
   const [isPhoneSignIn, setIsPhoneSignIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ email: any; password: any }>({ email: [], password: [] });
-  const { login } = useActions();
-  const { loading, accessToken, user } = useTypedSelector((state) => state.user);
+  // const { login } = useActions();
+  // const { loading, accessToken, user } = useTypedSelector((state) => state.user);
   const router = useRouter();
 
   const submitHandler = async (e: any) => {
@@ -43,7 +40,7 @@ const SignIn = () => {
     if (status?.isValid) {
       const res = await createUser(email, password);
       const token = res.userToken;
-      await login(res, 'email', token);
+      // await login(res, 'email', token);
       toast.success('Sign In successfully!');
     } else {
       console.log(`status`, status);
@@ -86,7 +83,7 @@ const SignIn = () => {
         res = await githubSignIn();
       }
       const userToken = res.token;
-      await login(userToken, provider);
+      // await login(userToken, provider);
       router.push('/');
       toast.success(`${provider.toLocaleUpperCase()} Sign In successfully!`);
     } catch (error: any) {
@@ -156,7 +153,7 @@ const SignIn = () => {
             />
             Github
           </PrimaryButton>
-          {loading && <p>Loading...</p>}
+          {/* {loading && <p>Loading...</p>} */}
           {!isPhoneSignIn && (
             <PrimaryButton
               icon={'fa-solid fa-phone'}
