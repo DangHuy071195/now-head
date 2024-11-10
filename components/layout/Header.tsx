@@ -18,50 +18,44 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
 
   return (
     <div className={`${classes['header__logo__content']} `}>
-      {/* <div className={classes['header__logo__content--content']}>
-        <h1 className={classes['header__logo__content--content__title']}>Welcome to my profile</h1>
-        <p className={classes['header__logo__content--content__para']}>
-          &Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ea odio sit consequuntur hic ipsum rem voluptate
-          doloremque fugit exercitationem itaque laborum vel, earum optio!
-        </p>
-      </div> */}
-      {/* <Image
-        alt="logo"
-        src={'/logo.png'}
-        width={60}
-        height={60}
-        className="rounded-full "
-      /> */}
-      {/* <SearchInput /> */}
-      <Image
-        src="/kid.jpg"
-        alt="logo"
-        width={100}
-        height={100}
-        className="rounded-full"
-      />
-      <div className="flex justify-between flex-0.5">
-        <Link
-          className={classes['header-item']}
-          href={'/'}>
-          Home
-        </Link>
-        <Link
-          className={classes['header-item']}
-          href={'/'}>
-          Services
-        </Link>
-        <Link
-          className={classes['header-item']}
-          href={'/'}>
-          Contact
-        </Link>
-        <Link
-          className={classes['header-item']}
-          href={'/'}>
-          About
-        </Link>
-      </div>
+      <header id="header">
+        <nav
+          id="header__main-nav"
+          onClick={() => {
+            const hamburgerContainer = document.querySelector('#header__main-nav');
+            hamburgerContainer?.classList.toggle('clicked');
+            const links = document.querySelectorAll('.header__main-nav--links li');
+            links.forEach((link) => {
+              link.classList.toggle('fade');
+            });
+          }}>
+          <div className="header__main-nav--hamburger">
+            <div className="line line-1"></div>
+            <div className="line line-2"></div>
+            <div className="line line-3"></div>
+          </div>
+          <ul className="header__main-nav--links">
+            <li>
+              <Link href="#">Home</Link>
+            </li>
+            <li>
+              <Link href="#">About</Link>
+            </li>
+            <li>
+              <Link href="#">Projects</Link>
+            </li>
+            <li>
+              <Link href="#">Services</Link>
+            </li>
+            <li>
+              <Link href="#">Hire Me</Link>
+            </li>
+            <li>
+              <Link href="#">Contact</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
     </div>
   );
 };

@@ -10,12 +10,24 @@ import StarCanvas from '@/components/starts-canvas';
 import Contact from '@/components/contact';
 import Skills from '@/components/skills';
 import ShowCase from '@/components/showcase';
+import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>Huy Nguyen - NextJs Freelancer</title>
+        <meta
+          name="description"
+          content="I'm Huy Nguyen - 
+          Fontend Freelancer 
+          I specialize in front-end development and UI/UX design.
+          I also develop RESTful APIs and microservices for web and mobile applications.
+          "
+        />
+      </Head>
       <div style={{}}>
         {/* <ShowCase /> */}
         <Hero />
@@ -25,7 +37,7 @@ export default function Home() {
         {/* <Tech /> */}
         {/* <Works /> */}
         {/* <Feedbacks /> */}
-        <div className="relative z-0 h-screen flex items-center justify-start px-96">
+        <div className="relative z-0 h-screen flex items-center justify-start">
           <StarCanvas />
           <Contact />
         </div>

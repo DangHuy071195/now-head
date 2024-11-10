@@ -3,10 +3,10 @@ import SkillItem from './SkillItem';
 import classes from './index.module.css';
 
 const designSkills = [
+  { name: 'Tailwind Css', progress: 85 },
   { name: 'Node JS', progress: 80 },
   { name: 'MongoDB', progress: 70 },
   { name: 'React Native', progress: 85 },
-  { name: 'Tailwind Css', progress: 85 },
 ];
 
 const codingSkills = [

@@ -48,7 +48,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
             <span
               className="text-[16px] text-[#ffffff]"
               key={x}>
-              <span className="inline-block mr-[10px] w-[12px] h-[12px] rouned-full bg-white"></span>
+              <span className="inline-block mr-[10px] w-[8px] h-[8px] rounded-full bg-white"></span>
               {x}.
             </span>
           ))}

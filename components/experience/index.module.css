@@ -59,3 +59,14 @@
 .verticalTimeline {
   width: 70vw !important;
 }
+
+@media screen and (max-width: 610px) {
+  .experience {
+    max-width: 100vw;
+    width: 100vw;
+  }
+
+  .experience span {
+    font-size: 24px;
+  }
+}

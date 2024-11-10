@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 import { GUI } from 'lil-gui'; // Import GUI directly from lil-gui
+import { div } from 'three/webgpu';
 
 interface ComputersInterfaceProps {
   isMobile: boolean;
@@ -49,22 +50,24 @@ const ComputerCanvas = () => {
   }, []);
 
   return (
-    <Canvas
-      frameloop="demand"
-      shadows
-      camera={{ position: [20, 0, 5], fov: 35 }}
-      gl={{ preserveDrawingBuffer: true }}
-      style={{ width: '100%', height: '100vh' }}>
-      <Suspense fallback={null}>
-        <OrbitControls
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
-          maxAzimuthAngle={Math.PI / 2}
-        />
-        <Preload all />
-        <Computers isMobile={isMobile} />
-      </Suspense>
-    </Canvas>
+    <div className="w-full h-[400px]">
+      <Canvas
+        frameloop="demand"
+        shadows
+        camera={{ position: [20, 0, 5], fov: 20 }}
+        gl={{ preserveDrawingBuffer: true }}
+        style={{ width: '100%', height: '100%' }}>
+        <Suspense fallback={null}>
+          <OrbitControls
+            enableZoom={false}
+            maxPolarAngle={Math.PI / 2}
+            maxAzimuthAngle={Math.PI / 2}
+          />
+          <Preload all />
+          <Computers isMobile={isMobile} />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 };
 

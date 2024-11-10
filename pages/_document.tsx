@@ -1,4 +1,5 @@
 // pages/_document.js
+import SideNav from '@/components/layout/SideNav';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {

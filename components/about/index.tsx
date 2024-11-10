@@ -33,7 +33,7 @@ const About = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}>
-        <h2 className="text-[24px] mb-[20px]">Services</h2>
+        <h2 className="text-[24px] mb-[20px] text-white">Services I can join.</h2>
         <div className={classes.services}>
           {services.map((service, index) => (
             <ServiceCard

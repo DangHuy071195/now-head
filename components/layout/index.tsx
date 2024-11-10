@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { GoogleAuthProvider, onAuthStateChanged, signInWithCredential } from 'firebase/auth';
 import { auth } from '@/libs/firebase';
 import { useRouter } from 'next/router';
+import SideNav from './SideNav';
 
 interface LayoutPropsI {
   children: React.ReactNode;
@@ -24,26 +25,26 @@ const Layout: React.FC<LayoutPropsI> = ({ children }) => {
   const router = useRouter();
 
   // Add this to your SignInPage component
-  useEffect(() => {
-    const loadGoogleScript = () => {
-      const script = document.createElement('script');
-      script.src = 'https://accounts.google.com/gsi/client';
-      script.async = true;
-      script.onload = () => {
-        //@ts-ignore
-        window.google.accounts.id.initialize({
-          client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
-          callback: handleCredentialResponse, // This will handle the response from one-tap
-          auto_select: true, // Automatically select account if one is available
-        });
-        //@ts-ignore
-        window.google.accounts.id.prompt(); // Prompt for one-tap sign-in
-      };
-      document.body.appendChild(script);
-    };
+  // useEffect(() => {
+  //   const loadGoogleScript = () => {
+  //     const script = document.createElement('script');
+  //     script.src = 'https://accounts.google.com/gsi/client';
+  //     script.async = true;
+  //     script.onload = () => {
+  //       //@ts-ignore
+  //       window.google.accounts.id.initialize({
+  //         client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
+  //         callback: handleCredentialResponse, // This will handle the response from one-tap
+  //         auto_select: true, // Automatically select account if one is available
+  //       });
+  //       //@ts-ignore
+  //       window.google.accounts.id.prompt(); // Prompt for one-tap sign-in
+  //     };
+  //     document.body.appendChild(script);
+  //   };
 
-    loadGoogleScript();
-  }, []);
+  //   loadGoogleScript();
+  // }, []);
 
   const handleCredentialResponse = (response: any) => {
     const credential = response.credential; // This is the JWT token
@@ -60,31 +61,34 @@ const Layout: React.FC<LayoutPropsI> = ({ children }) => {
       });
   };
 
-  useEffect(() => {
-    // Listen for authentication state changes
+  // useEffect(() => {
+  //   // Listen for authentication state changes
 
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log(`user`, user);
-      if (user) {
-        // User is signed in
-        setUser(user);
-      } else {
-        // User is signed out
-        setUser(null);
-        console.log('User is signed out');
-        router.push('/sign-in');
-      }
-    });
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     console.log(`user`, user);
+  //     if (user) {
+  //       // User is signed in
+  //       setUser(user);
+  //     } else {
+  //       // User is signed out
+  //       setUser(null);
+  //       console.log('User is signed out');
+  //       router.push('/sign-in');
+  //     }
+  //   });
 
-    // Clean up the subscription on unmount
-    return () => unsubscribe();
-  }, []);
+  //   // Clean up the subscription on unmount
+  //   return () => unsubscribe();
+  // }, []);
   return (
-    <div className="bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh] max-w-[1024px] m-auto">
-      {/* <NavBar /> */}
-      <Header user={user} />
-      <ToastContainer />
-      {children}
+    <div className="flex">
+      <SideNav />
+      <div className="flex-1 bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh] max-w-[1024px] m-auto px-[24px]">
+        {/* <NavBar /> */}
+        <Header user={user} />
+        <ToastContainer />
+        {children}
+      </div>
     </div>
   );
 };
