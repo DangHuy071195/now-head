@@ -15,11 +15,11 @@ const About = () => {
       description: 'Creating native and cross-platform mobile applications for iOS and Android.',
       icon: 'fa-solid fa-mobile-screen-button', // Replace with the online link to the React icon image
     },
-    {
-      title: 'UI/UX Design',
-      description: 'Designing intuitive and visually appealing user interfaces for web and mobile applications.',
-      icon: 'fa-sharp fa-solid fa-pen-ruler', // Replace with the online link to the Vue.js icon image
-    },
+    // {
+    //   title: 'UI/UX Design',
+    //   description: 'Designing intuitive and visually appealing user interfaces for web and mobile applications.',
+    //   icon: 'fa-sharp fa-solid fa-pen-ruler', // Replace with the online link to the Vue.js icon image
+    // },
     {
       title: 'API',
       description: 'Developing RESTful APIs and microservices for web and mobile applications.',
