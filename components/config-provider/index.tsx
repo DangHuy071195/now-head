@@ -1,4 +1,3 @@
-import { ConfigProvider } from 'antd';
 import React, { ReactNode } from 'react';
 import { App as AntdApp } from 'antd';
 
