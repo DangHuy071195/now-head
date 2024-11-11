@@ -4,6 +4,9 @@ import clientPromise from "@/libs/mongodb";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   console.log(`req.method`, req.method)
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Use a specific domain in production
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'POST') {
     const { name, email, message } = req.body;
 
