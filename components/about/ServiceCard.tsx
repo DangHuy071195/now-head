@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-const Tilt = dynamic(() => import('react-parallax-tilt'), { ssr: false });
 interface ServiceCardInterfaceProps {
   title: string;
   description: string;

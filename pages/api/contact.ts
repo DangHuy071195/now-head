@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from "@/libs/mongodb";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log(`req.method`, req.method)
   if (req.method === 'POST') {
     const { name, email, message } = req.body;
 
@@ -20,6 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(500).json({ message: 'Failed to store message', error });
     }
   } else {
+
     res.status(405).json({ message: 'Method not allowed' });
   }
 }
