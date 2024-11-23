@@ -1,25 +1,45 @@
-// pages/_document.js
-import SideNav from '@/components/layout/SideNav';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import React from 'react';
+import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
+import type { DocumentContext } from 'next/document';
+import { Provider } from 'react-redux';
+import { store } from '@/store';
 
-class MyDocument extends Document {
-  static async getInitialProps(ctx: any) {
-    const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
-  }
+const MyDocument = () => (
+  <Html lang="en">
+    <Head />
+    <body>
+      <Main />
+      <NextScript />
+    </body>
+  </Html>
+);
 
-  render() {
-    return (
-      <Html lang="en">
-        <Head>{/* Add any additional meta tags, fonts, or link tags here */}</Head>
-        <body>
-          {/* Any global HTML elements (no client-side components) */}
-          <Main /> {/* This renders the main application */}
-          <NextScript /> {/* This injects Next.js scripts */}
-        </body>
-      </Html>
-    );
-  }
-}
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
+  const cache = createCache();
+  const originalRenderPage = ctx.renderPage;
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: (App) => (props) => (
+        <StyleProvider cache={cache}>
+          <Provider store={store}>
+            <App {...props} />
+          </Provider>
+        </StyleProvider>
+      ),
+    });
+
+  const initialProps = await Document.getInitialProps(ctx);
+  const style = extractStyle(cache, true);
+  return {
+    ...initialProps,
+    styles: (
+      <>
+        {initialProps.styles}
+        <style dangerouslySetInnerHTML={{ __html: style }} />
+      </>
+    ),
+  };
+};
 
 export default MyDocument;

@@ -1,28 +1,26 @@
+import { useActions } from '@/hooks/useAction';
+import { useTypedSelector } from '@/hooks/useSelector';
+import { auth } from '@/libs/firebase';
+import { Avatar, Dropdown, Input, Layout, Menu, notification, theme } from 'antd';
+import { GoogleAuthProvider, onAuthStateChanged, signInWithCredential } from 'firebase/auth';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import NavBar from './NavBar';
-import Hero from './Hero';
-import About from '../about';
-import Exprience from '../experience';
-import Tech from '../tech';
-import Works from '../work';
-import Contact from '../contact';
-import Feedbacks from '../feedbacks';
-import StartsCanvas from '../starts-canvas';
-import Header from './Header';
-import StarCanvas from '../starts-canvas';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GoogleAuthProvider, onAuthStateChanged, signInWithCredential } from 'firebase/auth';
-import { auth } from '@/libs/firebase';
-import { useRouter } from 'next/router';
-import SideNav from './SideNav';
+import useSWR from 'swr';
 
+import UserHeader from './Header';
+import fetcher from '@/utils/fetcher';
+import axios from 'axios';
+const { Header, Content, Footer, Sider } = Layout;
+const { Search } = Input;
 interface LayoutPropsI {
   children: React.ReactNode;
+  name?: string;
 }
-const Layout: React.FC<LayoutPropsI> = ({ children }) => {
-  const [user, setUser] = useState<any>();
+const MainLayout: React.FC<LayoutPropsI> = (props) => {
   const router = useRouter();
+  const onSearch = (value: string) => console.log(value);
 
   // Add this to your SignInPage component
   // useEffect(() => {
@@ -46,51 +44,188 @@ const Layout: React.FC<LayoutPropsI> = ({ children }) => {
   //   loadGoogleScript();
   // }, []);
 
-  const handleCredentialResponse = (response: any) => {
-    const credential = response.credential; // This is the JWT token
-    // Use the credential to authenticate with Firebase
-    const provider = new GoogleAuthProvider();
-    return signInWithCredential(auth, GoogleAuthProvider.credential(credential))
-      .then((userCredential) => {
-        // Handle successful sign-in
-        console.log('User signed in:', userCredential.user);
-        router.push('/dashboard'); // Redirect to dashboard after sign-in
-      })
-      .catch((error) => {
-        console.error('Error signing in with credential:', error);
-      });
-  };
+  // const handleCredentialResponse = (response: any) => {
+  //   const credential = response.credential; // This is the JWT token
+  //   // Use the credential to authenticate with Firebase
+  //   const provider = new GoogleAuthProvider();
+  //   return signInWithCredential(auth, GoogleAuthProvider.credential(credential))
+  //     .then((userCredential) => {
+  //       // Handle successful sign-in
+  //       console.log('User signed in:', userCredential.user);
+  //       router.push('/dashboard'); // Redirect to dashboard after sign-in
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error signing in with credential:', error);
+  //     });
+  // };
 
-  // useEffect(() => {
-  //   // Listen for authentication state changes
+  const { userLogout, updateFirebaseToken, realtimeUser } = useActions();
 
-  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //     console.log(`user`, user);
-  //     if (user) {
-  //       // User is signed in
-  //       setUser(user);
-  //     } else {
-  //       // User is signed out
-  //       setUser(null);
-  //       console.log('User is signed out');
-  //       router.push('/sign-in');
-  //     }
-  //   });
+  const { user } = useTypedSelector((state) => state.user);
 
-  //   // Clean up the subscription on unmount
-  //   return () => unsubscribe();
-  // }, []);
-  return (
+  console.log(`user state`, user);
+  const { data, error } = useSWR(
+    user && user.firebaseToken && user.token
+      ? ['http://localhost:5000/user', `${user?.firebaseToken},${user?.token}`]
+      : null,
+    ([url, token]) => fetcher(url, token),
+  );
+
+  useEffect(() => {
+    // Listen for authentication state changes
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log(`user`, user);
+      if (user) {
+        // User is signed in
+        user.getIdToken().then((token) => {
+          console.log('New token:', token);
+          // Update Redux or perform other actions here
+          updateFirebaseToken(token);
+        });
+      } else {
+        // User is signed out
+        console.log('User is signed out');
+        userLogout();
+        router.push('/sign-in');
+      }
+    });
+
+    // Clean up the subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    console.log(`data`, data);
+    if (data) {
+      console.log(`data`, data);
+      realtimeUser(data.user);
+    }
+  }, [data]);
+
+  if (error) {
+    // userLogout();
+    console.log(`router path name`, router.pathname);
+    if (router.pathname !== '/sign-in') {
+      router.push('/sign-in');
+    }
+  }
+
+  if (!data || !user) {
+    // return <div className="text-white">Loading...</div>;
+  }
+
+  // const {
+  //   token: { colorBgContainer, borderRadiusLG },
+  // } = theme.useToken();
+
+  const items = [
+    {
+      key: 'courses',
+      label: (
+        <span className="text-[14px] font-medium">
+          <i className="fa-brands fa-discourse"></i> Course
+        </span>
+      ),
+      onClick: () => {
+        router.push('/admin/courses');
+      },
+    },
+  ];
+  return user && user?.role === 'admin' ? (
+    <Layout style={{ minHeight: '100vh' }}>
+      <Sider
+        style={{ background: 'white' }}
+        breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={(broken) => {
+          console.log(broken);
+        }}
+        onCollapse={(collapsed, type) => {
+          console.log(collapsed, type);
+        }}>
+        <Dropdown
+          menu={{
+            items: [
+              {
+                key: 'account',
+                label: 'My Profile',
+                onClick: () => {
+                  router.push('/profile');
+                },
+              },
+              {
+                key: 'logout',
+                label: 'Logout',
+                onClick: () => {
+                  userLogout();
+                  router.replace('/sign-in');
+                },
+              },
+            ],
+          }}
+          placement="bottomCenter"
+          overlayStyle={{ width: '100px', minWidth: '100px' }}
+          trigger={['click']}
+          arrow={{ pointAtCenter: true }}>
+          <div className="h-[64px] flex items-center justify-center p-[24px] gap-[12px]">
+            <Avatar
+              size={32}
+              src={user?.picture}
+              shape="circle"
+              className="border-1 border-orange-400 border-solid cursor-pointer"
+            />
+            <span>{user?.name}</span>
+          </div>
+        </Dropdown>
+
+        <Menu
+          theme="light"
+          mode="inline"
+          defaultSelectedKeys={['4']}
+          items={items}
+        />
+      </Sider>
+      <Layout>
+        <Header
+          style={{ background: 'white' }}
+          className="flex items-center justify-between">
+          <span>Logo</span>
+          <div className="flex items-center gap-[12px]">
+            <Search
+              placeholder="input search text"
+              allowClear
+              onSearch={onSearch}
+              style={{ width: 200 }}
+            />
+            <i className="fa-solid fa-language text-[16px]"></i>
+            <i className="fa-regular fa-envelope text-[16px]"></i>
+            <i className="fa-regular fa-bell text-[16px]"></i>
+          </div>
+        </Header>
+        <Content style={{ margin: '24px 16px 0' }}>
+          <div
+            style={{
+              padding: 24,
+              minHeight: 360,
+            }}>
+            <span>.....{props.name}</span>
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>Ant Design ©{new Date().getFullYear()} Created by Ant UED</Footer>
+      </Layout>
+    </Layout>
+  ) : (
     <div className="flex">
-      <SideNav />
-      <div className="flex-1 bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh] max-w-[1024px] m-auto px-[24px]">
+      {/* <SideNav /> */}
+      <div className="flex-1 bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh]  m-auto px-[24px]">
         {/* <NavBar /> */}
-        <Header user={user} />
+        <UserHeader user={user} />
         <ToastContainer />
-        {children}
+        {props.children}
       </div>
     </div>
   );
 };
 
-export default Layout;
+export default MainLayout;

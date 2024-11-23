@@ -6,11 +6,21 @@ interface ServiceCardInterfaceProps {
   description: string;
   index: number;
   icon: any;
+  id: string | number;
 }
 import classes from './index.module.css';
-const ServiceCard: React.FC<ServiceCardInterfaceProps> = ({ index, title, icon, description }) => {
+import { useRouter } from 'next/router';
+const ServiceCard: React.FC<ServiceCardInterfaceProps> = ({ index, title, icon, description, id }) => {
+  const router = useRouter();
+
+  const serviceClickHandler = () => {
+    console.log('service clicked');
+    router.push(`/courses/${id}`);
+  };
   return (
-    <div className={classes.box}>
+    <div
+      className={classes.box}
+      onClick={serviceClickHandler}>
       <div className={classes.content}>
         <div className={classes.tape}></div>
         {/* <h2 className={classes.heading}>0{index + 1}</h2> */}

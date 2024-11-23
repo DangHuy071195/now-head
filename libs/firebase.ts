@@ -1,6 +1,6 @@
 // lib/firebaseClient.ts
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut, validatePassword } from "firebase/auth";
+import { AuthCredential, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, getAuth, GithubAuthProvider, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, validatePassword } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAdkLuisv-AT6PQrLAyE_7Kb4reHHLC_b0",
@@ -17,12 +17,40 @@ const auth = getAuth(app);
 const createUser = async (email: string, password: string) => {
   console.log(`email`, email)
   console.log(` password`, password)
-  const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-  const user = userCredential.user;
-  const token = await user.getIdToken();
-  return { userToken: token }
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+    const user = userCredential.user;
+    const token = await user.getIdToken();
+    return { userToken: token }
+  } catch (error: any) {
+    return { error: error.code }
+  }
 
 };
+
+
+export const resetPassword = async (email: string) => {
+  try {
+    const res = await sendPasswordResetEmail(auth, email);
+  } catch (error: any) {
+    return { error: error.code }
+  }
+}
+
+export const loginWithEmailAndPassword = async (email: string, password: string) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password)
+    const user = userCredential.user;
+    const token = await user.getIdToken();
+    return { userToken: token }
+  } catch (error: any) {
+    console.log(`type of error`, typeof error)
+    return {
+      error: error.message
+    }
+  }
+
+}
 
 
 const passwordValidate = async (password: string) => {
@@ -71,6 +99,12 @@ export const githubSignIn = async (): Promise<any> => {
 
 export const signOutProvider = async () => {
   signOut(auth)
+}
+
+
+export const getInfoSign = async (email: string) => {
+  const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+  console.log(`signInMethods`, signInMethods);
 }
 
 export { auth, createUser, passwordValidate };

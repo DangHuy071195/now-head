@@ -7,20 +7,24 @@ const About = () => {
   const services = [
     {
       title: 'Web',
+      id: 1,
       description: 'All web applications are built with the latest technologies and best practices.',
       icon: 'fa-solid fa-browser', // Replace with the online link to the Angular icon image
     },
     {
+      id: 2,
       title: 'Mobile App',
       description: 'Creating native and cross-platform mobile applications for iOS and Android.',
       icon: 'fa-solid fa-mobile-screen-button', // Replace with the online link to the React icon image
     },
     {
+      id: 3,
       title: 'Chrome Extension Developer',
       description: 'Developing Chrome extensions to improve your browsing experience.',
       icon: 'fa-sharp fa-solid fa-pen-ruler', // Replace with the online link to the Vue.js icon image
     },
     {
+      id: 4,
       title: 'API',
       description: 'Developing RESTful APIs and microservices for web and mobile applications.',
       icon: 'fa-brands fa-node-js', // Replace with the online link to the Node.js icon image
@@ -37,6 +41,7 @@ const About = () => {
         <div className={classes.services}>
           {services.map((service, index) => (
             <ServiceCard
+              id={service.id}
               key={index}
               title={service.title}
               description={service.description}

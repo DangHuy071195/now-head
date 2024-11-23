@@ -5,8 +5,7 @@
 @import url('css/all.css');
 
 :root {
-  color: #232323;
-  font-size: 62.5% !important;
+  font-size: 62.5%;
   font-family: 'Space Mono', monospace;
   background-color: #0d1117;
   /* Colors */
