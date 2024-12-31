@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import classes from './index.module.css';
+import { Avatar } from 'antd';
 interface HeaderPropsI {
   user: any;
 }
@@ -56,6 +57,11 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
           )}
           {user && (
             <li>
+              <Avatar
+                shape="circle"
+                src={`https://avatars.dicebear.com/api/human/${user.id}.svg`}
+                alt="Random Avatar"
+              />
               <Link
                 href="/sign-in"
                 onClick={signOutHandler}>

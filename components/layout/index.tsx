@@ -12,6 +12,7 @@ import useSWR from 'swr';
 import UserHeader from './Header';
 import fetcher from '@/utils/fetcher';
 import axios from 'axios';
+import CanvasCursor from '../cavas-cursor';
 const { Header, Content, Footer, Sider } = Layout;
 const { Search } = Input;
 interface LayoutPropsI {
@@ -132,7 +133,7 @@ const MainLayout: React.FC<LayoutPropsI> = (props) => {
       },
     },
   ];
-  return user && user?.role === 'admin' ? (
+  return user && user?.role === 'admin' && router.pathname !== '/' ? (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
         style={{ background: 'white' }}
@@ -209,7 +210,7 @@ const MainLayout: React.FC<LayoutPropsI> = (props) => {
               padding: 24,
               minHeight: 360,
             }}>
-            <span>.....{props.name}</span>
+            <span>{props.children}</span>
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©{new Date().getFullYear()} Created by Ant UED</Footer>
@@ -217,6 +218,8 @@ const MainLayout: React.FC<LayoutPropsI> = (props) => {
     </Layout>
   ) : (
     <div className="flex">
+      <CanvasCursor />
+
       {/* <SideNav /> */}
       <div className="flex-1 bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh]  m-auto px-[24px]">
         {/* <NavBar /> */}

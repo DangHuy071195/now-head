@@ -8,7 +8,7 @@ import { store } from '@/store';
 const MyDocument = () => (
   <Html lang="en">
     <Head />
-    <body>
+    <body className="debug-screens">
       <Main />
       <NextScript />
     </body>
