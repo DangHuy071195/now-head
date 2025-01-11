@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import classes from './index.module.css';
-import { Avatar } from 'antd';
+import { Avatar, Dropdown } from 'antd';
 interface HeaderPropsI {
   user: any;
 }
@@ -56,18 +56,23 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
             </li>
           )}
           {user && (
-            <li>
-              <Avatar
-                shape="circle"
-                src={`https://avatars.dicebear.com/api/human/${user.id}.svg`}
-                alt="Random Avatar"
-              />
-              <Link
-                href="/sign-in"
-                onClick={signOutHandler}>
-                Sign out
-              </Link>
-            </li>
+            <Dropdown
+              trigger={['click']}
+              menu={{
+                items: [
+                  { key: '1', label: 'Sign out', onClick: signOutHandler },
+                  { key: '2', label: 'Profile', onClick: () => router.push('/profile') },
+                  { key: '3', label: 'Dashboard', onClick: () => router.push('/admin') },
+                ],
+              }}>
+              <li className="cursor-pointer">
+                <Avatar
+                  shape="circle"
+                  src={`https://avatars.dicebear.com/api/human/${user.id}.svg`}
+                  alt="Random Avatar"
+                />
+              </li>
+            </Dropdown>
           )}
         </ul>
       </nav>

@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           'Authorization': `Bearer ${token},`
         }
       })
-
+      console.log(`resAuth`, resAuth.data)
       res.status(200).json(resAuth.data)
     } catch (error: any) {
       console.log(`error`, error)

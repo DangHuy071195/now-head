@@ -132,7 +132,32 @@ const MainLayout: React.FC<LayoutPropsI> = (props) => {
         router.push('/admin/courses');
       },
     },
+    {
+      key: 'services',
+      label: (
+        <span className="text-[14px] font-medium">
+          <i className="fa-brands fa-discourse"></i> Services
+        </span>
+      ),
+      onClick: () => {
+        router.push('/admin/services');
+      },
+    },
+    {
+      key: 'users',
+      label: (
+        <span className="text-[14px] font-medium">
+          <i className="fa-brands fa-discourse"></i> Users
+        </span>
+      ),
+      onClick: () => {
+        router.push('/admin/users');
+      },
+    },
   ];
+  console.log(`user && user?.role === 'admin'`, user && user?.role === 'admin');
+  console.log(`paht name`, router.pathname);
+  console.log(`user`, user);
   return user && user?.role === 'admin' && router.pathname !== '/' ? (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider

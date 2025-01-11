@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Input, Button, Modal, Upload, Table } from 'antd';
 import Base from 'antd/es/typography/Base';
 import BaseUpload from './Upload';
+import MainLayout from '@/components/layout';
 
 const Services = () => {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,7 @@ const Services = () => {
   };
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col bg-white p-[1.6rem] rounded-md">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-[1.4rem] uppercase text-[#232323] font-medium">Services</h1>
         <Button
