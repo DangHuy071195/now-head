@@ -3,10 +3,12 @@ import { Form, Input, Button, Modal, Upload, Table } from 'antd';
 import Base from 'antd/es/typography/Base';
 import BaseUpload from './Upload';
 import MainLayout from '@/components/layout';
+import UploadFileCustomize from './Upload';
+import axios from 'axios';
 
 const Services = () => {
   const [open, setOpen] = useState(false);
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState<any[]>([]);
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
 
@@ -17,25 +19,20 @@ const Services = () => {
     formData.append('serviceName', values.serviceName);
     formData.append('description', values.description);
     console.log(`values.imageUrl`, values.imageUrl);
-    if (values.imageUrl && values.imageUrl[0]) {
-      formData.append('image', values.imageUrl[0].originFileObj);
+    if (values.imageUrl && values.imageUrl.length > 0) {
+      values.imageUrl.forEach((file: any) => {
+        formData.append('images[]', file.originFileObj); // Append each image as a separate field
+      });
     }
-    if (values.videoUrl && values.videoUrl[0]) {
-      formData.append('video', values.videoUrl[0].originFileObj);
-    }
-    formData.append('projectUrl', values.projectUrl);
 
-    // try {
-    //   const response = await axios.post('/api/services', formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //   });
-    //   setServices([...services, response.data]);
-    //   setOpen(false);
-    // } catch (error) {
-    //   console.error('There was an error uploading the data!', error);
-    // }
+    // Handling multiple video files
+    if (values.videoUrl && values.videoUrl.length > 0) {
+      values.videoUrl.forEach((file: any) => {
+        formData.append('videos[]', file.originFileObj); // Append each video as a separate field
+      });
+    }
+
+    formData.append('projectUrl', values.projectUrl);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -88,19 +85,21 @@ const Services = () => {
           rules={[{ required: true, message: 'Please input the image URL!' }]}
           valuePropName="fileList"
           getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}>
-          <BaseUpload
+          <UploadFileCustomize
             fileList={fileList}
-            handleFileList={(val: any) => setFileList(val)}
+            handleFileList={(val) => setFileList(val)}
           />
         </Form.Item>
 
         <Form.Item
           label="Video URL"
           name="videoUrl"
+          valuePropName="fileList"
           rules={[{ required: true, message: 'Please input the video URL!' }]}>
-          <Upload>
-            <Button icon={<i className="fas fa-upload" />}>Upload</Button>
-          </Upload>
+          <UploadFileCustomize
+            fileList={fileList}
+            handleFileList={(val) => setFileList(val)}
+          />
         </Form.Item>
 
         <Form.Item

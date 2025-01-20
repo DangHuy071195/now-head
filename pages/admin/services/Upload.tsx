@@ -6,6 +6,7 @@ import { message, Upload } from 'antd';
 // import Resizer from 'react-image-file-resizer';
 // import { uploadImages } from '../../services/cloudinary-services';
 import axios from 'axios';
+import { useTypedSelector } from '@/hooks/useSelector';
 const { Dragger } = Upload;
 
 interface UploadFileCustomizeProps {
@@ -16,55 +17,63 @@ interface UploadFileCustomizeProps {
 const UploadFileCustomize: React.FC<UploadFileCustomizeProps> = ({ handleFileList, fileList }) => {
   // const { userInfo } = useTypedSelector((state) => state.userLogin);
   const [progress, setProgress] = useState(0);
+  const { user } = useTypedSelector((state) => state.user);
 
-  const beforeUpload = (file: any) => {
-    // // setFileList([...fileList, file])
-    // let images: any = []
-    // Resizer.imageFileResizer(file, 720, 720, 'png', 100, 0, async (uri) => {
-    // 	try {
-    // 		// const res = await uploadImages(uri)
-    // 		images.push(res.data)
-    // 		setFileList([...images])
-    // 	} catch (error) {
-    // 	}
-    // })
+  const handleChange = (info: any) => {
+    let fileList = [...info.fileList];
+    // Limit the number of files to 10
+    fileList = fileList.slice(-10);
+    handleFileList(fileList);
   };
 
   const props: UploadProps = {
-    name: 'image',
+    fileList,
     multiple: true,
     listType: 'picture-card',
+    customRequest: (options) => {
+      // Preventing the default behavior
+      //@ts-ignore
+      options.onStart(); // Optional: Trigger `onStart` event
+      uploadImage(options);
+    },
+    onChange: handleChange,
+  };
+
+  const beforeUpload = (file: any) => {
+    return false; // Prevent automatic upload, we handle this manually
   };
 
   const uploadImage = async (options: any) => {
     const { onSuccess, onError, file, onProgress } = options;
-    let images: any = [];
-
-    // Resizer.imageFileResizer(file, 720, 720, 'png', 100, 0, async (uri) => {
-    //   try {
-    //     const res = await uploadImages(uri, {
-    //       onUploadProgress: (event: any) => {
-    //         const percent = Math.floor((event.loaded / event.total) * 100);
-    //         setProgress(percent);
-    //         if (percent === 100) {
-    //           setTimeout(() => setProgress(0), 1000);
-    //         }
-    //         onProgress({ percent: (event.loaded / event.total) * 100 });
-    //       },
-    //     });
-    //     images.push(res.data);
-    //     handleFileList([...images]);
-    //     onSuccess('Ok');
-    //   } catch (err) {
-    //     const error = new Error('Some error');
-    //     onError({ err });
-    //   }
-    // });
+    let files: any = [];
+    console.log(`file`, file);
+    files.push(file); // Gather all files to be uploaded
+    console.log(`files`, files);
+    const formData = new FormData();
+    files.forEach((file: any) => {
+      formData.append('images', file);
+    });
+    // formData.append('token', `${user.firebaseToken}, ${user.token}`);
 
     try {
-      const res = await axios.post('http://localhost:3000/api/upload', { images: file });
-    } catch (error) {
-      console.log(`error`, error);
+      const res = await axios.post('/api/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        // onUploadProgress: (event: any) => {
+        //   const percent = Math.floor((event.loaded / event.total) * 100);
+        //   setProgress(percent);
+        //   if (percent === 100) {
+        //     setTimeout(() => setProgress(0), 1000);
+        //   }
+        //   onProgress({ percent });
+        // },
+      });
+      // handleFileList((prevList: any) => [...prevList, res.data]); // Assuming response contains file info
+      onSuccess(null, file);
+    } catch (err) {
+      console.error('Upload failed:', err);
+      onError(err);
     }
   };
 
@@ -78,8 +87,9 @@ const UploadFileCustomize: React.FC<UploadFileCustomizeProps> = ({ handleFileLis
     <>
       <Upload
         {...props}
+        showUploadList={{ showPreviewIcon: true }}
         // headers={{ Authorization: `Bearer ${userInfo?.token}` }}
-        // beforeUpload={beforeUpload}
+        beforeUpload={beforeUpload}
         customRequest={uploadImage}>
         {fileList?.length >= 8 ? null : uploadButton}
       </Upload>
