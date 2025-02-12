@@ -36,6 +36,9 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
           <div className="line line-3"></div>
         </div>
         <ul className="header__main-nav--links">
+          <li>
+            <Link href="#">Hire me via phone number +84363792188</Link>
+          </li>
           <Image
             src={'/avatar.jpg'}
             alt="main-avt"
@@ -43,10 +46,6 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
             height={50}
             className="rounded-full"
           />
-
-          <li>
-            <Link href="#">Hire Me +84363792188</Link>
-          </li>
           {/* <li>
             <Link href="#">About</Link>
           </li>
