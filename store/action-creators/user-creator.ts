@@ -63,7 +63,8 @@ export const realtimeUser = (user: UserI) => {
   return async (dispatch: Dispatch<UpdateUserAction>) => {
     try {
       dispatch({ type: UpdateUserSWRActionType.UPDATE_USER_SWR_REQUEST });
-      localStorage.setItem('user', JSON.stringify(user));
+      const existedUser = JSON.parse(localStorage.getItem('user') || '{}');
+      localStorage.setItem('user', JSON.stringify({ ...existedUser, ...user }));
       dispatch({ type: UpdateUserSWRActionType.UPDATE_USER_SWR_SUCCESS, payload: user });
     } catch (error: any) {
       dispatch({ type: UpdateUserSWRActionType.UPDATE_USER_SWR_FAILURE, payload: error.message });

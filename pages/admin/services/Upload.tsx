@@ -12,9 +12,10 @@ const { Dragger } = Upload;
 interface UploadFileCustomizeProps {
   fileList: any;
   handleFileList: (files: any) => void;
+  handleUrl: (url: string) => void;
 }
 
-const UploadFileCustomize: React.FC<UploadFileCustomizeProps> = ({ handleFileList, fileList }) => {
+const UploadFileCustomize: React.FC<UploadFileCustomizeProps> = ({ handleFileList, fileList, handleUrl }) => {
   // const { userInfo } = useTypedSelector((state) => state.userLogin);
   const [progress, setProgress] = useState(0);
   const { user } = useTypedSelector((state) => state.user);
@@ -47,7 +48,11 @@ const UploadFileCustomize: React.FC<UploadFileCustomizeProps> = ({ handleFileLis
     const { onSuccess, onError, file, onProgress } = options;
     let files: any = [];
     console.log(`file`, file);
-    files.push(file); // Gather all files to be uploaded
+    if (Array.isArray(file)) {
+      files = file;
+    } else {
+      files.push(file); // Gather single file if only one is selected
+    }
     console.log(`files`, files);
     const formData = new FormData();
     files.forEach((file: any) => {
@@ -69,6 +74,9 @@ const UploadFileCustomize: React.FC<UploadFileCustomizeProps> = ({ handleFileLis
         //   onProgress({ percent });
         // },
       });
+      const { urls } = res.data;
+      console.log(`urls`, urls);
+      handleUrl(urls);
       // handleFileList((prevList: any) => [...prevList, res.data]); // Assuming response contains file info
       onSuccess(null, file);
     } catch (err) {
@@ -89,7 +97,7 @@ const UploadFileCustomize: React.FC<UploadFileCustomizeProps> = ({ handleFileLis
         {...props}
         showUploadList={{ showPreviewIcon: true }}
         // headers={{ Authorization: `Bearer ${userInfo?.token}` }}
-        beforeUpload={beforeUpload}
+        // beforeUpload={beforeUpload}
         customRequest={uploadImage}>
         {fileList?.length >= 8 ? null : uploadButton}
       </Upload>

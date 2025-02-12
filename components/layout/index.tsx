@@ -1,18 +1,16 @@
 import { useActions } from '@/hooks/useAction';
 import { useTypedSelector } from '@/hooks/useSelector';
 import { auth } from '@/libs/firebase';
-import { Avatar, Dropdown, Input, Layout, Menu, notification, theme } from 'antd';
-import { GoogleAuthProvider, onAuthStateChanged, signInWithCredential } from 'firebase/auth';
+import { Avatar, Dropdown, Input, Layout, Menu } from 'antd';
+import { onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useSWR from 'swr';
 
-import UserHeader from './Header';
 import fetcher from '@/utils/fetcher';
-import axios from 'axios';
-import CanvasCursor from '../cavas-cursor';
+import UserHeader from './Header';
 const { Header, Content, Footer, Sider } = Layout;
 const { Search } = Input;
 interface LayoutPropsI {
@@ -60,61 +58,54 @@ const MainLayout: React.FC<LayoutPropsI> = (props) => {
   //     });
   // };
 
-  const { userLogout, updateFirebaseToken, realtimeUser } = useActions();
+  // const { userLogout, updateFirebaseToken, realtimeUser } = useActions();
 
-  const { user } = useTypedSelector((state) => state.user);
+  // const { user } = useTypedSelector((state) => state.user);
 
-  console.log(`user state`, user);
-  const { data, error } = useSWR(
-    user && user.firebaseToken && user.token
-      ? ['http://localhost:5000/user', `${user?.firebaseToken},${user?.token}`]
-      : null,
-    ([url, token]) => fetcher(url, token),
-  );
+  // const { data, error } = useSWR(
+  //   user && user.firebaseToken && user.token
+  //     ? ['http://localhost:5000/user', `${user?.firebaseToken},${user?.token}`]
+  //     : null,
+  //   ([url, token]) => fetcher(url, token),
+  // );
 
-  useEffect(() => {
-    // Listen for authentication state changes
+  // useEffect(() => {
+  //   // Listen for authentication state changes
 
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log(`user`, user);
-      if (user) {
-        // User is signed in
-        user.getIdToken().then((token) => {
-          console.log('New token:', token);
-          // Update Redux or perform other actions here
-          updateFirebaseToken(token);
-        });
-      } else {
-        // User is signed out
-        console.log('User is signed out');
-        userLogout();
-        router.push('/sign-in');
-      }
-    });
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       // User is signed in
+  //       user.getIdToken().then((token) => {
+  //         // Update Redux or perform other actions here
+  //         updateFirebaseToken(token);
+  //       });
+  //     } else {
+  //       // User is signed out
+  //       console.log('User is signed out');
+  //       userLogout();
+  //       router.push('/sign-in');
+  //     }
+  //   });
 
-    // Clean up the subscription on unmount
-    return () => unsubscribe();
-  }, []);
+  //   // Clean up the subscription on unmount
+  //   return () => unsubscribe();
+  // }, []);
 
-  useEffect(() => {
-    console.log(`data`, data);
-    if (data) {
-      console.log(`data`, data);
-      realtimeUser(data.user);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   console.log(`data`, data);
+  //   if (data) {
+  //     console.log(`data`, data);
+  //     realtimeUser(data.user);
+  //   }
+  // }, [data]);
 
-  if (error) {
-    // userLogout();
-    console.log(`router path name`, router.pathname);
-    if (router.pathname !== '/sign-in') {
-      router.push('/sign-in');
-    }
-  }
+  // if (error) {
+  //   console.log(`router path name ${router.pathname} try to sig-in`);
+  // }
 
-  if (!data || !user) {
-    // return <div className="text-white">Loading...</div>;
-  }
+  // if (!data || !user) {
+  //   // return <div className="text-white">Loading...</div>;
+  // }
 
   // const {
   //   token: { colorBgContainer, borderRadiusLG },
@@ -155,105 +146,102 @@ const MainLayout: React.FC<LayoutPropsI> = (props) => {
       },
     },
   ];
-  console.log(`user && user?.role === 'admin'`, user && user?.role === 'admin');
-  console.log(`paht name`, router.pathname);
-  console.log(`user`, user);
-  return user && user?.role === 'admin' && router.pathname !== '/' ? (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider
-        style={{ background: 'white' }}
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}>
-        <Dropdown
-          menu={{
-            items: [
-              {
-                key: 'account',
-                label: 'My Profile',
-                onClick: () => {
-                  router.push('/profile');
-                },
-              },
-              {
-                key: 'logout',
-                label: 'Logout',
-                onClick: () => {
-                  userLogout();
-                  router.replace('/sign-in');
-                },
-              },
-            ],
-          }}
-          placement="bottomCenter"
-          overlayStyle={{ width: '100px', minWidth: '100px' }}
-          trigger={['click']}
-          arrow={{ pointAtCenter: true }}>
-          <div className="h-[64px] flex items-center justify-center p-[24px] gap-[12px]">
-            <Avatar
-              size={32}
-              src={user?.picture}
-              shape="circle"
-              className="border-1 border-orange-400 border-solid cursor-pointer"
-            />
-            <span>{user?.name}</span>
-          </div>
-        </Dropdown>
-
-        <Menu
-          theme="light"
-          mode="inline"
-          defaultSelectedKeys={['4']}
-          items={items}
-        />
-      </Sider>
-      <Layout>
-        <Header
-          style={{ background: 'white' }}
-          className="flex items-center justify-between">
-          <span>Logo</span>
-          <div className="flex items-center gap-[12px]">
-            <Search
-              placeholder="input search text"
-              allowClear
-              onSearch={onSearch}
-              style={{ width: 200 }}
-            />
-            <i className="fa-solid fa-language text-[16px]"></i>
-            <i className="fa-regular fa-envelope text-[16px]"></i>
-            <i className="fa-regular fa-bell text-[16px]"></i>
-          </div>
-        </Header>
-        <Content style={{ margin: '24px 16px 0' }}>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-            }}>
-            <span>{props.children}</span>
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©{new Date().getFullYear()} Created by Ant UED</Footer>
-      </Layout>
-    </Layout>
-  ) : (
+  return (
     <div className="flex">
-      <CanvasCursor />
-
       {/* <SideNav /> */}
       <div className="flex-1 bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh]  m-auto px-[24px]">
         {/* <NavBar /> */}
-        <UserHeader user={user} />
+        <UserHeader user={null} />
         <ToastContainer />
         {props.children}
       </div>
     </div>
+    // return user && user?.role === 'admin' && router.pathname !== '/' ? (
+    //   <Layout style={{ minHeight: '100vh' }}>
+    //     <Sider
+    //       style={{ background: 'white' }}
+    //       breakpoint="lg"
+    //       collapsedWidth="0"
+    //       onBreakpoint={(broken) => {
+    //         console.log(broken);
+    //       }}
+    //       onCollapse={(collapsed, type) => {
+    //         console.log(collapsed, type);
+    //       }}>
+    //       <Dropdown
+    //         menu={{
+    //           items: [
+    //             {
+    //               key: 'account',
+    //               label: 'My Profile',
+    //               onClick: () => {
+    //                 router.push('/profile');
+    //               },
+    //             },
+    //             {
+    //               key: 'logout',
+    //               label: 'Logout',
+    //               onClick: () => {
+    //                 userLogout();
+    //                 router.replace('/sign-in');
+    //               },
+    //             },
+    //           ],
+    //         }}
+    //         placement="bottomCenter"
+    //         overlayStyle={{ width: '100px', minWidth: '100px' }}
+    //         trigger={['click']}
+    //         arrow={{ pointAtCenter: true }}>
+    //         <div className="h-[64px] flex items-center justify-center p-[24px] gap-[12px]">
+    //           <Avatar
+    //             size={32}
+    //             src={user?.picture}
+    //             shape="circle"
+    //             className="border-1 border-orange-400 border-solid cursor-pointer"
+    //           />
+    //           <span>{user?.name}</span>
+    //         </div>
+    //       </Dropdown>
+
+    //       <Menu
+    //         theme="light"
+    //         mode="inline"
+    //         defaultSelectedKeys={['4']}
+    //         items={items}
+    //       />
+    //     </Sider>
+    //     <Layout>
+    //       <Header
+    //         style={{ background: 'white' }}
+    //         className="flex items-center justify-between">
+    //         <span>Logo</span>
+    //         <div className="flex items-center gap-[12px]">
+    //           <Search
+    //             placeholder="input search text"
+    //             allowClear
+    //             onSearch={onSearch}
+    //             style={{ width: 200 }}
+    //           />
+    //           <i className="fa-solid fa-language text-[16px]"></i>
+    //           <i className="fa-regular fa-envelope text-[16px]"></i>
+    //           <i className="fa-regular fa-bell text-[16px]"></i>
+    //         </div>
+    //       </Header>
+    //       <Content style={{ margin: '24px 16px 0' }}>
+    //         <div
+    //           style={{
+    //             padding: 24,
+    //             minHeight: 360,
+    //           }}>
+    //           <span>{props.children}</span>
+    //         </div>
+    //       </Content>
+    //       <Footer style={{ textAlign: 'center' }}>Ant Design ©{new Date().getFullYear()} Created by Ant UED</Footer>
+    //     </Layout>
+    //   </Layout>
+    // ) : (
   );
+  // );
 };
 
 export default MainLayout;

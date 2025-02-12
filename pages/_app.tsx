@@ -13,16 +13,16 @@ import { Provider } from 'react-redux';
 import useSWR from 'swr';
 
 export default function App({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    // Sync localStorage state after hydration
-    const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null;
-    if (user) {
-      store.dispatch({
-        type: 'auth/hydrate',
-        payload: user,
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   // Sync localStorage state after hydration
+  //   const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null;
+  //   if (user) {
+  //     store.dispatch({
+  //       type: 'auth/hydrate',
+  //       payload: user,
+  //     });
+  //   }
+  // }, []);
 
   return (
     <Provider store={store}>

@@ -1,6 +1,8 @@
 import React from 'react';
 import SkillItem from './SkillItem';
 import classes from './index.module.css';
+import { get } from 'lodash';
+import axios from 'axios';
 
 const designSkills = [
   { name: 'Tailwind Css', progress: 85 },

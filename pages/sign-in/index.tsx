@@ -20,7 +20,6 @@ import axios from 'axios';
 import { useActions } from '@/hooks/useAction';
 import { useTypedSelector } from '@/hooks/useSelector';
 import Link from 'next/link';
-import CanvasCursor from '@/components/cavas-cursor';
 const Item = Form.Item;
 
 const SignIn = () => {
@@ -96,8 +95,6 @@ const SignIn = () => {
 
   return (
     <div className="flex flex-col items-center w-[600px] mx-auto bg-white p-[2.4rem] mt-[30rem] rounded-lg">
-      <CanvasCursor />
-
       <h2 className="text-[#232323] text-[2rem]">Sign In</h2>
       <Form
         form={form}

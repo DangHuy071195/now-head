@@ -51,7 +51,6 @@ export default function handler(req: any, res: any) {
               return s3Response.Location; // Return the S3 URL for each file
             })
           );
-          console.log('File URLs:', fileUrls);
 
           // Respond with the URLs of all uploaded files
           res.status(200).json({ urls: fileUrls });

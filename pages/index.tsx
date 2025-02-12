@@ -11,10 +11,20 @@ import Contact from '@/components/contact';
 import Skills from '@/components/skills';
 import ShowCase from '@/components/showcase';
 import Head from 'next/head';
+import axios from 'axios';
+import http from '@/libs/http';
 
+interface Service {
+  _id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
 const inter = Inter({ subsets: ['latin'] });
-
-export default function Home() {
+interface HomePropsI {
+  services: Service[];
+}
+const Home: React.FC<HomePropsI> = ({ services }) => {
   return (
     <>
       <Head>
@@ -31,7 +41,7 @@ export default function Home() {
       <div style={{}}>
         {/* <ShowCase /> */}
         <Hero />
-        <About />
+        <About services={services} />
         <Skills />
         <Exprience />
         {/* <Tech /> */}
@@ -44,4 +54,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;

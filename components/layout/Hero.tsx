@@ -24,18 +24,22 @@ const Hero = () => {
             <h1 className="text-[30px] text-[#915eff]">
               Hi, I am <span className="">Huy Nguyen</span>
             </h1>
-            <p className="mt-2 text-[#33b3ae] text-[20px]">
+            <p className="mt-2 text-[#fff] text-[20px]">
               Im software engineer with experience in building web and mobile applications. I specialize in front-end
               development and UI/UX design.
               <br />I also develop RESTful APIs and microservices for web and mobile applications.
               <span
-                className="text-[#33b3ae]"
+                className="text-[#fff]"
                 style={{}}>
                 I have not had the opportunity to participate in projects with Nextjs but I have knowledge and
                 understanding of it. Based on my background and experience with React JS and the course on Udemy about
                 NextJs, I am confident that I can work with it with the requirements of optimizing SEO and performance
                 for the website...etc.
                 <br />
+              </span>
+              <span className="text-white">
+                My English skills are not perfect, but they are sufficient for chatting, writing, understanding, and a
+                little bit of listening. I am not completely confident, but I am eager to try and secure a job.
               </span>
             </p>
           </div>

@@ -61,7 +61,7 @@ const experiences = [
     iconBg: ['#33b3ae', 'transparent'],
     title: 'Student at',
     company_name: 'CodeGym, Aptech',
-    points: ['CodeGym . programming training center '],
+    points: ['CodeGym .Programming training center '],
     isEnd: true,
   },
 ];
@@ -70,7 +70,7 @@ const Exprience = () => {
   return (
     <section
       id="experienced"
-      className="flex items-center flex-col ">
+      className="flex items-center flex-col pt-[10rem]">
       <h2 className={`${classes.heading} text-center text-[24px] mb-[24px]`}>What i have done so far</h2>
       {/* <h2 className={classes.title}>Work Experience</h2> */}
       <div className={classes['experiences']}>

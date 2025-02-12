@@ -15,9 +15,10 @@ const headers: Readonly<Record<string, string | boolean>> = {
 
 const injectToken = async (config: AxiosRequestConfig): Promise<any> => {
   try {
-    // const tokenStorage = localStorage.getItem('token');
-    // if (tokenStorage) {
-    //   config.headers!.Authorization = `Bearer ${tokenStorage}`;
+    // const { firebaseToken, token } = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : { firebaseToken: null, token: null };
+    // console.log(`injectToken from static props`, firebaseToken, token);
+    // if (firebaseToken && token) {
+    //   config.headers!.Authorization = `Bearer ${firebaseToken},${token}`;
     //   return config;
     // }
     return config
@@ -123,6 +124,18 @@ class Http {
       config = { ...config, cancelToken };
     }
     return this.http.put<T, R>(url, data, config);
+  }
+
+  patch<T = any, R = AxiosResponse<T>>(
+    url: string,
+    data?: T,
+    config?: AxiosRequestConfig,
+    cancelToken?: CancelToken
+  ): Promise<R> {
+    if (cancelToken) {
+      config = { ...config, cancelToken };
+    }
+    return this.http.patch<T, R>(url, data, config);
   }
 
   private async handleError(error: any) {

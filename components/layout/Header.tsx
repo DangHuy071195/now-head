@@ -3,16 +3,20 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import classes from './index.module.css';
 import { Avatar, Dropdown } from 'antd';
+import { useActions } from '@/hooks/useAction';
+import Image from 'next/image';
 interface HeaderPropsI {
   user: any;
 }
 const Header: React.FC<HeaderPropsI> = ({ user }) => {
   const router = useRouter();
   // const selector = useTypedSelector((state) => state.user);
-  // const { logout } = useActions();
+  const { userLogout } = useActions();
   // const { loading, user: userStore, accessToken, error } = useTypedSelector((state) => state.user);
 
-  const signOutHandler = () => {};
+  const signOutHandler = () => {
+    userLogout();
+  };
 
   return (
     <header id="header">
@@ -32,10 +36,18 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
           <div className="line line-3"></div>
         </div>
         <ul className="header__main-nav--links">
+          <Image
+            src={'/avatar.jpg'}
+            alt="main-avt"
+            width={50}
+            height={50}
+            className="rounded-full"
+          />
+
           <li>
-            <Link href="#">Home</Link>
+            <Link href="#">Hire Me +84363792188</Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="#">About</Link>
           </li>
           <li>
@@ -44,13 +56,11 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
           <li>
             <Link href="#">Services</Link>
           </li>
-          <li>
-            <Link href="#">Hire Me</Link>
-          </li>
+          
           <li>
             <Link href="#">Contact</Link>
-          </li>
-          {!user && (
+          </li> */}
+          {/* {!user && (
             <li>
               <Link href="/sign-in">Sign in</Link>
             </li>
@@ -68,12 +78,12 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
               <li className="cursor-pointer">
                 <Avatar
                   shape="circle"
-                  src={`https://avatars.dicebear.com/api/human/${user.id}.svg`}
+                  src={``}
                   alt="Random Avatar"
                 />
               </li>
             </Dropdown>
-          )}
+          )} */}
         </ul>
       </nav>
     </header>
