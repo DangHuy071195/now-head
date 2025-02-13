@@ -14,6 +14,7 @@ import Head from 'next/head';
 import axios from 'axios';
 import http from '@/libs/http';
 import { desc } from 'framer-motion/client';
+import { Metadata } from 'next';
 
 interface Service {
   _id: string;
@@ -45,14 +46,30 @@ const Home: React.FC<HomePropsI> = ({ services }) => {
   return (
     <>
       <Head>
-        <title>Huy Nguyen - NextJs Freelancer</title>
+        <title>Nguyễn Đăng Huy - Frontend Developer</title>
         <meta
-          name="description"
-          content="I'm Huy Nguyen - 
-          Fontend Developer 
-          I specialize in front-end development and UI/UX design.
-          I also develop RESTful APIs and microservices for web and mobile applications.
-          "
+          property="og:image"
+          content={`https://next-js-bucket.s3.ap-southeast-1.amazonaws.com/avatar.jpg`}
+        />
+
+        <meta
+          property="og:type"
+          content="profile"
+        />
+        <meta
+          property="og:title"
+          content={`Nguyễn Đăng Huy - Frontend Developer`}
+        />
+        <meta
+          property="og:description"
+          content={`
+        I'm Huy Nguyen -  Fontend Developer with 4 years of experience in web development.
+          `}
+        />
+
+        <meta
+          property="og:type"
+          content="profile"
         />
       </Head>
       <div style={{}}>
