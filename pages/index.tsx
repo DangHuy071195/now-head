@@ -66,11 +66,6 @@ const Home: React.FC<HomePropsI> = ({ services }) => {
         I'm Huy Nguyen -  Fontend Developer with 4 years of experience in web development.
           `}
         />
-
-        <meta
-          property="og:type"
-          content="profile"
-        />
       </Head>
       <div style={{}}>
         {/* <ShowCase /> */}
