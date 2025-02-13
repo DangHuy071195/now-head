@@ -13,6 +13,7 @@ import ShowCase from '@/components/showcase';
 import Head from 'next/head';
 import axios from 'axios';
 import http from '@/libs/http';
+import { desc } from 'framer-motion/client';
 
 interface Service {
   _id: string;
@@ -24,6 +25,12 @@ const inter = Inter({ subsets: ['latin'] });
 interface HomePropsI {
   services: Service[];
 }
+
+export const metadata = {
+  title: 'Huy Nguyen - NextJs Freelancer',
+  description: `I'm Huy Nguyen -  Fontend Freelancer with 4 years of experience in web development.`,
+};
+
 const Home: React.FC<HomePropsI> = ({ services }) => {
   return (
     <>

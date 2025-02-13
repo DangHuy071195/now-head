@@ -2,9 +2,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import classes from './index.module.css';
-import { Avatar, Dropdown } from 'antd';
+import { Avatar, Dropdown, Grid } from 'antd';
 import { useActions } from '@/hooks/useAction';
 import Image from 'next/image';
+const { useBreakpoint } = Grid;
 interface HeaderPropsI {
   user: any;
 }
@@ -18,6 +19,8 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
     userLogout();
   };
 
+  const screens = useBreakpoint();
+  const isMobile = screens.xs;
   return (
     <header id="header">
       <nav
@@ -36,16 +39,32 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
           <div className="line line-3"></div>
         </div>
         <ul className="header__main-nav--links">
+          {!isMobile ? (
+            <li>
+              <Link href="#">Hire me via phone number +84363792188</Link>
+            </li>
+          ) : (
+            <li>
+              <Link href="#">
+                Hire me <br />
+                Via phone number <br />
+                +84363792188
+              </Link>
+            </li>
+          )}
           <li>
-            <Link href="#">Hire me via phone number +84363792188</Link>
+            <Link
+              href={'#'}
+              className="flex justify-center">
+              <Image
+                src={'/avatar.jpg'}
+                alt="main-avt"
+                width={!isMobile ? 50 : 80}
+                height={!isMobile ? 50 : 80}
+                className="rounded-full avatar"
+              />
+            </Link>
           </li>
-          <Image
-            src={'/avatar.jpg'}
-            alt="main-avt"
-            width={50}
-            height={50}
-            className="rounded-full"
-          />
           {/* <li>
             <Link href="#">About</Link>
           </li>
