@@ -49,7 +49,7 @@ const Home: React.FC<HomePropsI> = ({ services }) => {
         <title>Nguyễn Đăng Huy - Frontend Developer</title>
         <meta
           property="og:image"
-          content={`/avatar.jpg`}
+          content={`https://next-js-bucket.s3.ap-southeast-1.amazonaws.com/avatar.jpg`}
         />
 
         <meta
