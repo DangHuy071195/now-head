@@ -27,8 +27,8 @@ interface HomePropsI {
 }
 
 export const metadata = {
-  title: 'Huy Nguyen - NextJs Freelancer',
-  description: `I'm Huy Nguyen -  Fontend Freelancer with 4 years of experience in web development.`,
+  title: 'Huy Nguyen - React/NextJs Developer',
+  description: `I'm Huy Nguyen -  Fontend Developer with 4 years of experience in web development.`,
 };
 
 const Home: React.FC<HomePropsI> = ({ services }) => {
@@ -39,7 +39,7 @@ const Home: React.FC<HomePropsI> = ({ services }) => {
         <meta
           name="description"
           content="I'm Huy Nguyen - 
-          Fontend Freelancer 
+          Fontend Developer 
           I specialize in front-end development and UI/UX design.
           I also develop RESTful APIs and microservices for web and mobile applications.
           "
