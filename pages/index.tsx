@@ -46,25 +46,14 @@ const Home: React.FC<HomePropsI> = ({ services }) => {
   return (
     <>
       <Head>
-        <title>Nguyễn Đăng Huy - Frontend Developer</title>
+        <title>{metadata.title}</title>
         <meta
           property="og:image"
-          content={`https://next-js-bucket.s3.ap-southeast-1.amazonaws.com/avatar.jpg`}
-        />
-
-        <meta
-          property="og:type"
-          content="website"
+          content={metadata.openGraph.images[0].url}
         />
         <meta
-          property="og:title"
-          content={`Nguyễn Đăng Huy - Frontend Developer`}
-        />
-        <meta
-          property="og:description"
-          content={`
-        I'm Huy Nguyen -  Fontend Developer with 4 years of experience in web development.
-          `}
+          name="description"
+          content={metadata.description}
         />
       </Head>
       <div style={{}}>
