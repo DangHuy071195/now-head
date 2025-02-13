@@ -177,7 +177,7 @@ ul.header__main-nav--links li a:active::after {
   }
 
   .clicked {
-    left: 40%;
+    left: 38%;
   }
 
   .header__main-nav--hamburger {
