@@ -54,7 +54,7 @@ const Home: React.FC<HomePropsI> = ({ services }) => {
 
         <meta
           property="og:type"
-          content="profile"
+          content="website"
         />
         <meta
           property="og:title"
