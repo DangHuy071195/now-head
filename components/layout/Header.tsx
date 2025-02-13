@@ -21,6 +21,7 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
 
   const screens = useBreakpoint();
   const isMobile = screens.xs;
+  console.log(`screens`, screens);
   return (
     <header id="header">
       <nav
@@ -39,19 +40,23 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
           <div className="line line-3"></div>
         </div>
         <ul className="header__main-nav--links">
-          {!isMobile ? (
-            <li>
-              <Link href="#">Hire me via phone number +84363792188</Link>
-            </li>
-          ) : (
-            <li>
-              <Link href="#">
-                Hire me <br />
-                Via phone number <br />
-                +84363792188
-              </Link>
-            </li>
-          )}
+          <li>
+            <Link href="#">Hire me</Link>
+          </li>
+
+          <li>
+            <Link
+              href="https://www.facebook.com/huyittos2"
+              target="_blank">
+              <i className="fa-brands fa-facebook"></i> Nguyễn Đăng Huy
+            </Link>
+          </li>
+          <li>
+            <Link href="tel:+84363792188">
+              <i className="fa-solid fa-phone"></i> +84 363792188
+            </Link>
+          </li>
+
           <li>
             <Link
               href={'#'}

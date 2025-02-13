@@ -29,6 +29,16 @@ interface HomePropsI {
 export const metadata = {
   title: 'Huy Nguyen - React/NextJs Developer',
   description: `I'm Huy Nguyen -  Fontend Developer with 4 years of experience in web development.`,
+  openGraph: {
+    images: [
+      {
+        url: 'https://next-js-bucket.s3.ap-southeast-1.amazonaws.com/avatar.jpg', // Avatar as the Open Graph image
+        width: 600,
+        height: 600,
+        alt: 'Avatar',
+      },
+    ],
+  },
 };
 
 const Home: React.FC<HomePropsI> = ({ services }) => {
