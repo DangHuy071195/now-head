@@ -177,7 +177,7 @@ ul.header__main-nav--links li a:active::after {
   }
 
   .clicked {
-    left: 55%;
+    left: 40%;
   }
 
   .header__main-nav--hamburger {
@@ -188,7 +188,7 @@ ul.header__main-nav--links li a:active::after {
     right: 3rem;
     cursor: pointer;
     padding: 1rem;
-    border-radius: 50%;
+    border-radius: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

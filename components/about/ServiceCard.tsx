@@ -15,7 +15,6 @@ const ServiceCard: React.FC<ServiceCardInterfaceProps> = ({ index, title, icon, 
 
   const serviceClickHandler = () => {
     console.log('service clicked');
-    router.push(`/courses/${id}`);
   };
   return (
     <div
