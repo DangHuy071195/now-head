@@ -173,6 +173,7 @@ ul.header__main-nav--links li a:active::after {
     right: 0;
     background-color: #26232d;
     text-align: center;
+    z-index: 3;
   }
 
   .clicked {
