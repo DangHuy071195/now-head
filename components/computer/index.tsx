@@ -51,42 +51,47 @@ const ComputerCanvas = () => {
   }, []);
 
   return (
-    <div className="w-full flex items-center justify-center mt-[4.4rem] gap-[2.4rem] h-[50rem]">
+    <div className="w-full flex flex-col sm:flex-col md:flex-row items-center justify-center mt-[4.4rem] gap-[2.4rem] ">
       <ProfileCard
         avatarUrl="/user-card.jpg"
-        name="Sophia Martinez"
-        title="Senior Product Designer"
-        handle="sophiadesigns"
+        name="Nguyen Dang Huy"
+        title="Middle Frontend Developer"
+        handle="ittokid"
         status="Online"
-        bio="Creating beautiful, intuitive interfaces that solve real problems for users. Based in San Francisco."
+        bio="I'm a Frontend Developer with experience in building web applications using React, Next.js, and TypeScript. I love creating beautiful and functional user interfaces that enhance the user experience."
         stats={{
           followers: 2453,
           following: 162,
           likes: 4.8,
         }}
-        socialLinks={[
-          { platform: 'Twitter', url: '#', icon: '𝕏' },
-          { platform: 'LinkedIn', url: '#', icon: 'in' },
-          { platform: 'Dribbble', url: '#', icon: '◎' },
-        ]}
-        onContactClick={() => alert('Contact clicked!')}
+        onContactClick={(type: string) => {
+          console.log(`clicked`);
+          if (type === 'email') {
+            window.location.href = 'mailto:nguyendanghuy071195@gmail.com';
+          }
+          if (type === 'linkedin') {
+            window.open('https://www.linkedin.com/in/huy-nguyen-2209b4165/', '_blank');
+          }
+        }}
       />
-      <Canvas
-        frameloop="demand"
-        shadows
-        camera={{ position: [20, 0, 5], fov: 20 }}
-        gl={{ preserveDrawingBuffer: true }}
-        style={{ width: '100%', height: '100%', flexGrow: 1 }}>
-        <Suspense fallback={<>Loading ....</>}>
-          <OrbitControls
-            enableZoom={false}
-            maxPolarAngle={Math.PI / 2}
-            maxAzimuthAngle={Math.PI / 2}
-          />
-          <Preload all />
-          <Computers isMobile={isMobile} />
-        </Suspense>
-      </Canvas>
+      <div className="min-h-[40rem] h-[40rem]">
+        <Canvas
+          frameloop="demand"
+          shadows
+          camera={{ position: [25, 0, 5], fov: 25 }}
+          gl={{ preserveDrawingBuffer: true }}
+          style={{ width: '100%', height: '100%', flexGrow: 1 }}>
+          <Suspense fallback={<>Loading ....</>}>
+            <OrbitControls
+              enableZoom={false}
+              maxPolarAngle={Math.PI / 2}
+              maxAzimuthAngle={Math.PI / 2}
+            />
+            <Preload all />
+            <Computers isMobile={isMobile} />
+          </Suspense>
+        </Canvas>
+      </div>
     </div>
   );
 };

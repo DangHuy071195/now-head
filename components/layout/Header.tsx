@@ -23,9 +23,12 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
   const isMobile = screens.xs;
   console.log(`screens`, screens);
   return (
-    <header id="header">
+    <header
+      id="header"
+      className="shadow-sm bg-[#2c2f35]">
       <nav
         id="header__main-nav"
+        className="flex justify-center w-full items-center"
         onClick={() => {
           const hamburgerContainer = document.querySelector('#header__main-nav');
           hamburgerContainer?.classList.toggle('clicked');
@@ -39,75 +42,48 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
           <div className="line line-2"></div>
           <div className="line line-3"></div>
         </div>
-        <ul className="header__main-nav--links">
-          <li>
-            <Link href="#">Hire me</Link>
-          </li>
-
-          <li>
-            <Link
-              href="https://www.facebook.com/huyittos2"
-              target="_blank">
-              <i className="fa-brands fa-facebook"></i> Nguyễn Đăng Huy
-            </Link>
-          </li>
-          <li>
-            <Link href="tel:+84363792188">
-              <i className="fa-solid fa-phone"></i> +84 363792188
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href={'#'}
-              className="flex justify-center">
-              <Image
-                src={'/avatar.jpg'}
-                alt="main-avt"
-                width={!isMobile ? 50 : 80}
-                height={!isMobile ? 50 : 80}
-                className="rounded-full avatar"
-              />
-            </Link>
-          </li>
-          {/* <li>
-            <Link href="#">About</Link>
-          </li>
-          <li>
-            <Link href="#">Projects</Link>
-          </li>
-          <li>
-            <Link href="#">Services</Link>
-          </li>
-          
-          <li>
-            <Link href="#">Contact</Link>
-          </li> */}
-          {/* {!user && (
+        <div className="flex min-h-[4rem] items-center w-full justify-between">
+          <Link
+            href={'/'}
+            className=" mr-[1.2rem]">
+            <Image
+              src={'/avatar.jpg'}
+              alt="main-avt"
+              width={!isMobile ? 40 : 60}
+              height={!isMobile ? 40 : 60}
+              className="rounded-full avatar"
+            />
+          </Link>
+          <ul className="header__main-nav--links flex-end">
             <li>
-              <Link href="/sign-in">Sign in</Link>
+              <a
+                href="/cv.pdf"
+                download={'nguyen-huy-cv-middle-fe.pdf'}>
+                <i className="fa-solid fa-folder-arrow-down"></i> About me
+              </a>
             </li>
-          )}
-          {user && (
-            <Dropdown
-              trigger={['click']}
-              menu={{
-                items: [
-                  { key: '1', label: 'Sign out', onClick: signOutHandler },
-                  { key: '2', label: 'Profile', onClick: () => router.push('/profile') },
-                  { key: '3', label: 'Dashboard', onClick: () => router.push('/admin') },
-                ],
-              }}>
-              <li className="cursor-pointer">
-                <Avatar
-                  shape="circle"
-                  src={``}
-                  alt="Random Avatar"
-                />
-              </li>
-            </Dropdown>
-          )} */}
-        </ul>
+
+            <li>
+              <Link
+                href="https://www.facebook.com/huyittos2"
+                target="_blank">
+                <i className="fa-brands fa-facebook"></i>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://www.linkedin.com/in/huy-nguyen-2209b4165/"
+                target="_blank">
+                <i className="fa-brands fa-linkedin"></i>
+              </Link>
+            </li>
+            <li>
+              <Link href="tel:+84363792188">
+                <i className="fa-solid fa-phone"></i> +84 363792188
+              </Link>
+            </li>
+          </ul>
+        </div>
       </nav>
     </header>
   );

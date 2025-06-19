@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['next-js-bucket.s3.ap-southeast-1.amazonaws.com'],
+    domains: ['next-js-bucket.s3.ap-southeast-1.amazonaws.com', 'images.pexels.com'],
   },
   transpilePackages: [
     'antd',

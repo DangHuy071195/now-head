@@ -1,10 +1,11 @@
 section#skills {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   flex-wrap: wrap;
-
   padding: calc(1rem + 2vw);
+  max-width: 70vw;
+  margin: 0 auto;
 }
 
 .skills__design,
@@ -102,6 +103,19 @@ section#skills {
 
   100% {
     width: 75%;
+  }
+}
+
+.skills__coding--progress__5 {
+  animation: coding-5 3s infinite cubic-bezier(1, 0, 0, 1);
+}
+@keyframes coding-5 {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 65%;
   }
 }
 

@@ -3,12 +3,13 @@ import React from 'react';
 import classes from './index.module.css';
 import ExperienceCard from './ExperienceCard';
 import { VerticalTimeline } from 'react-vertical-timeline-component';
+import StarCanvas from '../starts-canvas';
 const experiences = [
   {
     isEnd: true,
     date: '2023-Present',
     icon: 'fa-brands fa-node-js',
-    iconBg: '#7C72FF',
+    iconBg: ['#7C72FF', '#8d3bd9 80%', '#783dd6'],
     title: 'Web,App,Chrome Extension Developer',
     company_name: 'Maxtrust',
     points: [
@@ -34,7 +35,7 @@ const experiences = [
     isMiddle: true,
     date: '2020-2021',
     icon: 'fa-brands fa-node-js',
-    iconBg: ['#3fb950', '#71cc82'],
+    iconBg: ['#3fb950', '#bacc71', '#a0722e'],
     title: 'MERN, Blockchain FREHSER',
     company_name: 'VMO',
     points: [
@@ -70,7 +71,7 @@ const Exprience = () => {
   return (
     <section
       id="experienced"
-      className="flex items-center flex-col pt-[10rem]">
+      className="flex items-center flex-col pt-[4.4rem] relative">
       <h2 className={`${classes.heading} text-center text-[24px] mb-[24px]`}>What i have done so far</h2>
       {/* <h2 className={classes.title}>Work Experience</h2> */}
       <div className={classes['experiences']}>
@@ -81,6 +82,7 @@ const Exprience = () => {
           />
         ))}
       </div>
+      <StarCanvas />
     </section>
   );
 };

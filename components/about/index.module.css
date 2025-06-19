@@ -38,7 +38,7 @@
   font-size: calc(1rem + 0.4vw);
 }
 
-.about {
+.services {
   padding: 3rem;
   /* margin: 0 auto; */
 }
@@ -53,9 +53,6 @@
   padding-top: 2rem;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, 20%);
-  grid-template-rows: auto;
-  grid-gap: 24px;
   justify-content: center;
   align-items: center;
 }
@@ -202,16 +199,14 @@
   background: rgba(255, 255, 255, 0.95);
   color: #222;
 }
-.box i {
+.box i,
+.box img {
   transition: all 0.5s ease;
 }
 
 .box:hover i {
   scale: 1.5;
 }
-
-@media screen and (max-width: 768px) {
-  .services {
-    grid-template-columns: repeat(1, 75%);
-  }
+.box:hover img {
+  scale: 1.5;
 }

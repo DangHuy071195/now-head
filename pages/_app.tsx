@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import useSWR from 'swr';
+import AnimatedCursor from 'react-animated-cursor';
 
 export default function App({ Component, pageProps }: AppProps) {
   // useEffect(() => {
@@ -28,6 +29,20 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <MainLayout>
+        <AnimatedCursor
+          innerSize={8}
+          outerSize={35}
+          innerScale={1}
+          outerScale={2}
+          outerAlpha={0}
+          hasBlendMode={true}
+          innerStyle={{
+            backgroundColor: '#ffffff',
+          }}
+          outerStyle={{
+            border: '3px solid #f7f7f7',
+          }}
+        />
         <Component {...pageProps} />
       </MainLayout>
     </Provider>

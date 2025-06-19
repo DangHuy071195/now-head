@@ -10,7 +10,7 @@ interface ProfileCardProps {
   bio?: string;
   stats?: { followers: number; following: number; likes: number };
   socialLinks?: { platform: string; url: string; icon: string }[];
-  onContactClick?: () => void;
+  onContactClick?: (type: string) => void;
   className?: string;
 }
 
@@ -81,6 +81,14 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
 
     return () => clearTimeout(timer);
   }, []);
+
+  const connectHandler = (type: string) => {
+    if (onContactClick) {
+      onContactClick(type);
+    } else {
+      console.warn('onContactClick function is not provided');
+    }
+  };
 
   return (
     <div
@@ -157,46 +165,49 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               <p className="text-indigo-200 font-medium">{title}</p>
               <p className="text-white/70">@{handle}</p>
 
-              {bio && <p className="text-white/80 text-sm mt-3 max-w-xs">{bio}</p>}
+              {bio && <p className="text-white/80 text-sm md:text-xl  mt-3 max-w-xs">{bio}</p>}
             </motion.div>
 
-            {/* Stats section */}
-            {stats && (
-              <motion.div
-                className="flex justify-between w-full mt-6 border-t border-white/10 pt-4"
-                initial={{ opacity: 0, y: 10 }}
+            <div className="flex items-center justify-evenly gap-[0.4rem]">
+              <motion.button
+                onClick={() => connectHandler('email')}
+                className="mt-6 bg-violet-500 cursor-pointer z-30 text-white px-8 py-2.5 rounded-full font-medium shadow-lg"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: '0 10px 25px -5px rgba(79, 70, 229, 0.4)',
+                  cursor: 'pointer',
+                }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}>
-                {Object.entries(stats).map(([key, value], index) => (
-                  <div
-                    key={key}
-                    className="text-center">
-                    <p className="text-white font-bold text-lg">{value}</p>
-                    <p className="text-white/60 text-xs capitalize">{key}</p>
-                  </div>
-                ))}
-              </motion.div>
-            )}
-
-            {/* Contact button with hover effect */}
-            <motion.button
-              onClick={onContactClick}
-              className="mt-6 bg-white text-indigo-600 px-8 py-2.5 rounded-full font-medium shadow-lg"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: '0 10px 25px -5px rgba(79, 70, 229, 0.4)',
-              }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.7,
-                duration: 0.5,
-                type: 'spring',
-                stiffness: 300,
-              }}>
-              Connect
-            </motion.button>
+                transition={{
+                  delay: 0.7,
+                  duration: 0.5,
+                  type: 'spring',
+                  stiffness: 300,
+                }}>
+                EMail
+              </motion.button>
+              <motion.button
+                onClick={() => connectHandler('linkedin')}
+                className="mt-6 bg-blue-500 cursor-pointer z-30 text-white px-8 py-2.5 rounded-full font-medium shadow-lg"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: '0 10px 25px -5px rgba(79, 70, 229, 0.4)',
+                  cursor: 'pointer',
+                }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.7,
+                  duration: 0.5,
+                  type: 'spring',
+                  stiffness: 300,
+                }}>
+                Linkedin
+              </motion.button>
+            </div>
 
             {/* Social links */}
             {socialLinks && (
@@ -224,19 +235,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           </div>
         </div>
       </motion.div>
-
-      {/* Reflection effect */}
-      <motion.div
-        className="absolute w-full h-1/3 bottom-0 left-0 bg-gradient-to-t from-white/5 to-transparent rounded-b-2xl"
-        style={{
-          opacity: isHovering ? 0.07 : 0,
-          rotateX: -180,
-          rotateY: 0,
-          translateY: '100%',
-          transformOrigin: 'top',
-          transition: 'opacity 0.5s ease',
-        }}
-      />
     </div>
   );
 };

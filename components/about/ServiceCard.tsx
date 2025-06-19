@@ -7,10 +7,12 @@ interface ServiceCardInterfaceProps {
   index: number;
   icon: any;
   id: string | number;
+  image?: string;
 }
 import classes from './index.module.css';
 import { useRouter } from 'next/router';
-const ServiceCard: React.FC<ServiceCardInterfaceProps> = ({ index, title, icon, description, id }) => {
+import Image from 'next/image';
+const ServiceCard: React.FC<ServiceCardInterfaceProps> = ({ index, title, icon, description, id, image }) => {
   const router = useRouter();
 
   const serviceClickHandler = () => {
@@ -23,7 +25,15 @@ const ServiceCard: React.FC<ServiceCardInterfaceProps> = ({ index, title, icon, 
       <div className={classes.content}>
         <div className={classes.tape}></div>
         {/* <h2 className={classes.heading}>0{index + 1}</h2> */}
-        <i className={`${icon} text-[40px]`}></i>
+        {icon && <i className={`${icon} text-[40px]`}></i>}
+        {!icon && image && (
+          <Image
+            src={image}
+            width={48}
+            height={48}
+            alt="icon"
+          />
+        )}
         <p>{description}</p>
         {/* <a href="#">Read more...</a> */}
       </div>

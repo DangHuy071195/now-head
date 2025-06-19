@@ -7,6 +7,7 @@ interface ExperienceCardProps {
   experience: any;
 }
 import classes from './index.module.css';
+import ShinyText from '../shinny-text';
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
   const { isStart, isMiddle, isEnd, iconBg } = experience;
   const lineGradiendt = isArray(iconBg) ? `${iconBg[0]} 30%, ${iconBg[1]}` : `${iconBg} 30%`;
@@ -24,29 +25,37 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
         {/* linear-gradient(#3fb950, #2ea043, transparent) */}
         {/* linear-gradient(#7C72FF, #2DA44E 80%, #3FB950) */}
         <div
-          className={classes['experience-timeline_line']}
+          className={`${classes['experience-timeline_line']} animate-shine-vertical`}
           style={{
             background: isStart
-              ? `linear-gradient(transparent, ${lineGradiendt})`
+              ? `linear-gradient(0deg, transparent, ${lineGradiendt})`
               : isEnd
-                ? `linear-gradient(${lineGradiendt}, transparent)`
+                ? `linear-gradient(0deg, ${lineGradiendt}, transparent)`
                 : isMiddle
-                  ? `linear-gradient(${lineGradiendt}, transparent)`
+                  ? `linear-gradient(0deg, ${lineGradiendt}, transparent)`
                   : '',
+            backgroundSize: '100% 200%',
+            animationDuration: '5s',
           }}></div>
       </div>
       <div
         className={classes['experience-timeline_content']}
         ref={ref}>
-        <span
-          className={`text-[18px]`}
-          style={{ color: `${isArray(iconBg) ? iconBg[0] : iconBg}` }}>
-          {experience.title}-{experience['company_name']} ({experience['date']})
+        <span style={{ color: `${isArray(iconBg) ? iconBg[0] : iconBg}` }}>
+          <ShinyText
+            text={`${experience.title}-${experience['company_name']} (${experience['date']})`}
+            disabled={false}
+            speed={3}
+            className={classes.title}
+            baseColor={`${isArray(iconBg) ? iconBg[0] : iconBg}`}
+            secondColor={`${isArray(iconBg) ? iconBg[1] : iconBg}`}
+            lastColor={`${isArray(iconBg) ? iconBg[2] : iconBg}`}
+          />
         </span>
         <div className="flex flex-col gap-[16px]">
           {experience.points.map((x: any) => (
             <span
-              className="text-[16px] text-[#ffffff]"
+              className="text-[#fff]"
               key={x}>
               <span className="inline-block mr-[10px] w-[8px] h-[8px] rounded-full bg-white"></span>
               {x}.

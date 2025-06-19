@@ -1,14 +1,16 @@
 import React from 'react';
 import SkillItem from './SkillItem';
 import classes from './index.module.css';
-import { get } from 'lodash';
+import { get, isArray } from 'lodash';
 import axios from 'axios';
+import ShinyText from '../shinny-text';
 
 const designSkills = [
   { name: 'Tailwind Css', progress: 85 },
   { name: 'Node JS', progress: 80 },
   { name: 'MongoDB', progress: 70 },
   { name: 'React Native', progress: 85 },
+  { name: 'GraphQL', progress: 70 },
 ];
 
 const codingSkills = [
@@ -22,7 +24,17 @@ const Skills = () => {
   return (
     <section id={classes['skills']}>
       <div className={classes['skills__coding']}>
-        <h3 className={classes['skills__coding--title']}>Coding Skills</h3>
+        <h3 className={`${classes['skills__coding--title']} text-center`}>
+          <ShinyText
+            text="Coding Skills"
+            disabled={false}
+            speed={3}
+            className="text-[3rem]"
+            baseColor={`#915eff`}
+            secondColor={`#7C72FF`}
+            lastColor={`#6A5ACD`}
+          />
+        </h3>
         {codingSkills.map((skill, index) => (
           <SkillItem
             name={skill.name}
@@ -33,8 +45,17 @@ const Skills = () => {
         ))}
       </div>
       <div className={classes['skills__design']}>
-        <h3 className={classes['skills__design--title']}>Other Knowledge</h3>
-
+        <h3 className={classes['skills__design--title']}>
+          <ShinyText
+            text="Other Knowledge"
+            disabled={false}
+            speed={3}
+            className="text-[3rem]"
+            baseColor={`#915eff`}
+            secondColor={`#7C72FF`}
+            lastColor={`#6A5ACD`}
+          />
+        </h3>
         {designSkills.map((skill, index) => (
           <SkillItem
             name={skill.name}

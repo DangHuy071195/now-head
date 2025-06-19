@@ -1,7 +1,9 @@
 .experiences {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  max-width: 70vw;
+  margin: 0 auto;
 }
 
 .experience {
@@ -10,8 +12,6 @@
   flex-wrap: nowrap;
   /* height: 300px; */
   margin-bottom: 2rem;
-  max-width: 40vw;
-  width: 40vw;
 }
 
 .experience-timeline {
@@ -40,7 +40,7 @@
 }
 
 .heading {
-  font-size: 24px;
+  font-size: calc(1.5rem + 1vw);
   font-weight: normal;
   letter-spacing: 2px;
   margin: 0;
@@ -50,23 +50,25 @@
 }
 
 .title {
-  font-size: 48px;
+  font-size: calc(1.4rem + 1vw);
   font-weight: bold;
-  color: white;
   margin: 0;
   margin-top: 5px;
 }
+
+.experience span {
+  font-size: calc(1rem + 1vw);
+}
+
 .verticalTimeline {
   width: 70vw !important;
 }
 
-@media screen and (max-width: 610px) {
-  .experience {
-    max-width: 100vw;
-    width: 100vw;
-  }
-
+@media screen and (min-width: 960px) {
   .experience span {
-    font-size: 24px;
+    font-size: calc(1rem + 0.5vw);
+  }
+  .title {
+    font-size: calc(1.2rem + 1vw);
   }
 }

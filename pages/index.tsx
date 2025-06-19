@@ -65,10 +65,9 @@ const Home: React.FC<HomePropsI> = ({ services }) => {
         {/* <Tech /> */}
         {/* <Works /> */}
         {/* <Feedbacks /> */}
-        <div className="relative z-0 h-screen flex items-center justify-start">
+        {/* <div className="relative z-0 h-screen flex items-center justify-start">
           <StarCanvas />
-          {/* <Contact /> */}
-        </div>
+        </div> */}
       </div>
     </>
   );

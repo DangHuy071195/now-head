@@ -1,17 +1,12 @@
-import { useActions } from '@/hooks/useAction';
-import { useTypedSelector } from '@/hooks/useSelector';
-import { auth } from '@/libs/firebase';
-import { Avatar, Dropdown, Input, Layout, Menu } from 'antd';
-import { onAuthStateChanged } from 'firebase/auth';
+import { Input, Layout } from 'antd';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useSWR from 'swr';
 
-import fetcher from '@/utils/fetcher';
 import UserHeader from './Header';
-const { Header, Content, Footer, Sider } = Layout;
+import Footer from './Footer';
+const { Header, Content, Sider } = Layout;
 const { Search } = Input;
 interface LayoutPropsI {
   children: React.ReactNode;
@@ -147,15 +142,18 @@ const MainLayout: React.FC<LayoutPropsI> = (props) => {
     },
   ];
   return (
-    <div className="flex max-w-[70vw] mx-auto justify-center">
-      {/* <SideNav /> */}
-      <div className="flex-1 bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh]  m-auto px-[24px]">
-        {/* <NavBar /> */}
-        <UserHeader user={null} />
-        <ToastContainer />
-        {props.children}
+    <>
+      <UserHeader user={null} />
+      <div className="flex max-w-[70vw] mx-auto justify-center">
+        {/* <SideNav /> */}
+        <div className="flex-1 bg-primary relative z-0 flex flex-col min-h-[100vh]  m-auto px-[24px]">
+          {/* <NavBar /> */}
+          <ToastContainer />
+          {props.children}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
