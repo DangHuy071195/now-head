@@ -25,7 +25,7 @@ const ServiceCard: React.FC<ServiceCardInterfaceProps> = ({ index, title, icon, 
         {/* <h2 className={classes.heading}>0{index + 1}</h2> */}
         <i className={`${icon} text-[40px]`}></i>
         <p>{description}</p>
-        <a href="#">Read more...</a>
+        {/* <a href="#">Read more...</a> */}
       </div>
     </div>
   );

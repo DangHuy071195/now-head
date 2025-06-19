@@ -143,6 +143,13 @@
   transform: scaleX(1);
 }
 
+.title {
+  color: white;
+}
+.description {
+  color: white;
+}
+
 @media (max-width: 600px) {
   .header-item {
     font-size: 1.6rem;
@@ -154,5 +161,23 @@
   .header-item:link::after,
   .header-item:visited::after {
     height: 0.15rem;
+  }
+
+  .title {
+    font-size: calc(1.2rem + 0.66667vw);
+  }
+
+  .description {
+    font-size: calc(0.8rem + 0.66667vw);
+    color: white;
+  }
+}
+
+@media (max-width: 900px) {
+  .title {
+    font-size: calc(1.4rem + 0.66667vw);
+  }
+  .description {
+    font-size: calc(1rem + 0.66667vw);
   }
 }

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import ServiceCard from './ServiceCard';
 import classes from './index.module.css';
 import axios from 'axios';
+import RotatingText from '../roating-text';
 interface AboutPropsI {
   services?: any[];
 }
@@ -19,7 +20,7 @@ const services = [
     id: 2,
     title: 'Mobile Development',
     description:
-      'I can build a mobile application from scratch, or maintain and update an existing one. I have experience in both iOS and Android development.',
+      'I have knowledge in building mobile applications using React Native. I can develop cross-platform applications for both iOS and Android.',
     icon: 'fas fa-mobile-alt',
   },
 
@@ -27,7 +28,7 @@ const services = [
     id: 4,
     title: 'API Development',
     description:
-      'I can develop a RESTful API for your web or mobile application use MERN Stacks. I have experience in both building and consuming APIs.',
+      'I can develop a RESTful API, GraphQl for your web or mobile application use MERN Stacks. I have experience in both building and consuming APIs.',
     icon: 'fas fa-server',
   },
 ];
@@ -40,7 +41,21 @@ const About: React.FC<AboutPropsI> = (props) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}>
-        <h2 className="text-[24px] mb-[20px] text-white">Services I can join.</h2>
+        <div className="flex items-center gap-[1.2rem] justify-center py-[4.4rem]">
+          <p className="text-[2.4rem] text-white h-[4.8rem] leading-[4.8rem] uppercase">MY TECHNICAL</p>
+          <RotatingText
+            texts={['WEB', 'APP', 'EXTENSION']}
+            mainClassName="px-2 sm:px-2 md:px-3 bg-cyan-300 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg text-[2.4rem] text-white"
+            staggerFrom={'last'}
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '-120%' }}
+            staggerDuration={0.025}
+            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+            transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+            rotationInterval={2000}
+          />
+        </div>
         <div className={classes.services}>
           {services?.map((service, index) => (
             <ServiceCard

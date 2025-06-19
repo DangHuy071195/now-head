@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 import { GUI } from 'lil-gui'; // Import GUI directly from lil-gui
 import { div } from 'three/webgpu';
+import ProfileCard from '../profile-card';
 
 interface ComputersInterfaceProps {
   isMobile: boolean;
@@ -50,14 +51,33 @@ const ComputerCanvas = () => {
   }, []);
 
   return (
-    <div className="w-full h-[400px]">
+    <div className="w-full flex items-center justify-center mt-[4.4rem] gap-[2.4rem] h-[50rem]">
+      <ProfileCard
+        avatarUrl="/user-card.jpg"
+        name="Sophia Martinez"
+        title="Senior Product Designer"
+        handle="sophiadesigns"
+        status="Online"
+        bio="Creating beautiful, intuitive interfaces that solve real problems for users. Based in San Francisco."
+        stats={{
+          followers: 2453,
+          following: 162,
+          likes: 4.8,
+        }}
+        socialLinks={[
+          { platform: 'Twitter', url: '#', icon: '𝕏' },
+          { platform: 'LinkedIn', url: '#', icon: 'in' },
+          { platform: 'Dribbble', url: '#', icon: '◎' },
+        ]}
+        onContactClick={() => alert('Contact clicked!')}
+      />
       <Canvas
         frameloop="demand"
         shadows
         camera={{ position: [20, 0, 5], fov: 20 }}
         gl={{ preserveDrawingBuffer: true }}
-        style={{ width: '100%', height: '100%' }}>
-        <Suspense fallback={null}>
+        style={{ width: '100%', height: '100%', flexGrow: 1 }}>
+        <Suspense fallback={<>Loading ....</>}>
           <OrbitControls
             enableZoom={false}
             maxPolarAngle={Math.PI / 2}

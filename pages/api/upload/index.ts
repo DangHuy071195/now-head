@@ -30,31 +30,22 @@ export default function handler(req: any, res: any) {
           return res.status(500).json({ message: 'File upload failed', error: err });
         }
 
-        if (!req.files || req.files.length === 0) {
+        if (!req.file || req.file.length === 0) {
           return res.status(400).json({ message: 'No files uploaded' });
         }
 
         try {
-          const fileUrls = await Promise.all(
-            req.files.map(async (file: any) => {
-              const params = {
-                Bucket: process.env.AWS_BUCKET_NAME,
-                Key: `uploads/${Date.now()}_${file.originalname}`, // Unique name for each file
-                Body: file.buffer,
-                ContentType: file.mimetype,
-                ACL: 'public-read', // Make file publicly accessible
-              };
-
-              // Upload file to S3 and get the URL
-              //@ts-ignore
-              const s3Response = await s3.upload(params).promise();
-              return s3Response.Location; // Return the S3 URL for each file
-            })
-          );
-
-          // Respond with the URLs of all uploaded files
-          res.status(200).json({ urls: fileUrls });
-          resolve(true);
+          const file = req.file
+          const params = {
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: `uploads/${Date.now()}_${file.originalname}`, // Unique name for each file
+            Body: file.buffer,
+            ContentType: file.mimetype,
+            ACL: 'public-read',
+          };
+          //@ts-ignore
+          const s3Response = await s3.upload(params).promise();
+          return s3Response.Location;
         } catch (error) {
           console.error('S3 upload error:', error);
           res.status(500).json({ message: 'Failed to upload file to S3', error });

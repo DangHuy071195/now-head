@@ -9,7 +9,7 @@ const UserLayout: React.FC<LayoutPropsI> = (props) => {
   return (
     <div className="flex">
       {/* <SideNav /> */}
-      <div className="flex-1 bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh]  m-auto px-[24px]">
+      <div className="flex-1 bg-primary relative z-0 flex flex-col bg-[#0d1117] min-h-[100vh] m-auto px-[24px]">
         {/* <NavBar /> */}
         <Header user={null} />
         <ToastContainer />

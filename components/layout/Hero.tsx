@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ComputerCanvas from '../computer';
+import classes from './index.module.css';
 const Hero = () => {
   const refHeroDesc = React.useRef<HTMLDivElement>(null);
   const [heightOfLineHero, setHeightOfLineHero] = useState(0);
@@ -21,25 +22,29 @@ const Hero = () => {
             />
           </div>
           <div ref={refHeroDesc}>
-            <h1 className="text-[30px] text-[#915eff]">
-              Hi, I am <span className="">Huy Nguyen</span>
+            <h1 className={`${classes.title} text-[#915eff]`}>
+              Hi, I am <span>Huy Nguyen</span>
             </h1>
             <ul
-              className="text-[#fff] text-2xl"
+              className={classes.description}
               style={{ listStyle: 'inside' }}>
               <li>
-                Im software engineer with experience in building web and mobile applications. I specialize in front-end
-                development and UI/UX design.
+                <span>
+                  Im software engineer with experience in building web and mobile applications. I specialize in
+                  front-end development and UI/UX design.
+                </span>
               </li>
-              <li>I also develop RESTful APIs and microservices for web and mobile applications.</li>
               <li>
-                <span className="text-[#fff]">
+                <span>I also develop RESTful APIs and microservices for web and mobile applications.</span>
+              </li>
+              <li>
+                <span>
                   I have not had the opportunity to participate in projects with Nextjs but I have knowledge and
                   understanding of it. Based on my background and experience with React JS and the course on Udemy about
                   NextJs, I am confident that I can work with it with the requirements of optimizing SEO and performance
                   for the website...etc.
-                  <br />
                 </span>
+                <br />
               </li>
               <li>
                 <span className="text-white">
