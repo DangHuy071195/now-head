@@ -42,8 +42,6 @@ const services = [
   },
 ];
 const Services: React.FC<AboutPropsI> = (props) => {
-  console.log(`services`, services);
-
   return (
     <section className="max-w-[70vw] mx-auto">
       <motion.div

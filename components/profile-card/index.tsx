@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface ProfileCardProps {
   avatarUrl: string;
@@ -138,7 +139,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}>
-                <img
+                <Image
                   src={avatarUrl}
                   alt={name}
                   className="w-full h-full object-cover"

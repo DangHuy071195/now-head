@@ -65,7 +65,6 @@ const ComputerCanvas = () => {
           likes: 4.8,
         }}
         onContactClick={(type: string) => {
-          console.log(`clicked`);
           if (type === 'email') {
             window.location.href = 'mailto:nguyendanghuy071195@gmail.com';
           }

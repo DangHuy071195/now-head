@@ -21,7 +21,6 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
 
   const screens = useBreakpoint();
   const isMobile = screens.xs;
-  console.log(`screens`, screens);
   return (
     <header
       id="header"

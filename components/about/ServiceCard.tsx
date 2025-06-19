@@ -15,9 +15,7 @@ import Image from 'next/image';
 const ServiceCard: React.FC<ServiceCardInterfaceProps> = ({ index, title, icon, description, id, image }) => {
   const router = useRouter();
 
-  const serviceClickHandler = () => {
-    console.log('service clicked');
-  };
+  const serviceClickHandler = () => {};
   return (
     <div
       className={classes.box}
