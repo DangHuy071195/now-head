@@ -35,7 +35,6 @@ export default function App({ Component, pageProps }: AppProps) {
           innerScale={1}
           outerScale={2}
           outerAlpha={0}
-          hasBlendMode={true}
           innerStyle={{
             backgroundColor: '#ffffff',
           }}
