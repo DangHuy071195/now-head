@@ -16,13 +16,14 @@ const Hero = () => {
       }
     }, 1000);
   }, []);
+
   return (
     <>
       <section className="relative max-w-[70vw] h-auto mx-auto mt-[48px]">
         <div className="inset-0 mx-auto flex flex-grow items-start gap-5 relative">
           <motion.div
             initial={{ opacity: 0, left: '-10%' }}
-            animate={{ opacity: heightOfLineHero ? 1 : 0, left: heightOfLineHero ? '-7%' : '-5%' }}
+            animate={{ opacity: heightOfLineHero ? 1 : 0, left: heightOfLineHero ? '-1.8rem' : '-5%' }}
             transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
             className="flex flex-col justify-center items-center absolute left-0 top-0"
             style={{ height: heightOfLineHero }}>
@@ -49,27 +50,23 @@ const Hero = () => {
               style={{ listStyle: 'inside' }}>
               <li>
                 <span>
-                  I'm a software engineer with experience in building web and mobile applications. I specialize in
-                  front-end development and UI/UX design.
+                  I'm a React Developer with over 4 years of experience in web development, specializing in building
+                  user interfaces and web applications using React JS, Next JS, and TypeScript.
                 </span>
-              </li>
-              <li>
-                <span>I also develop RESTful APIs and microservices for web and mobile applications.</span>
               </li>
               <li>
                 <span>
-                  I have not had the opportunity to participate in projects with Nextjs but I have knowledge and
-                  understanding of it. Based on my background and experience with React JS and the course on Udemy about
-                  NextJs, I am confident that I can work with it with the requirements of optimizing SEO and performance
-                  for the website...etc.
+                  I have a solid understanding of React's core concepts, including state management, component
+                  lifecycle, and hooks. I am also familiar with popular libraries and tools in the React ecosystem, such
+                  as Redux, React Router, and styled-components etc.
                 </span>
-                <br />
               </li>
               <li>
-                <span className="text-white">
-                  My English skills are not perfect, but they are sufficient for chatting, writing, understanding, and a
-                  little bit of listening. I am not completely confident, but I am eager to try and secure a job.
+                <span>
+                  I have a strong understanding of web development principles, including responsive design, performance
+                  optimization, and accessibility.
                 </span>
+                <br />
               </li>
             </ul>
           </div>

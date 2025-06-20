@@ -1,10 +1,9 @@
+import { useActions } from '@/hooks/useAction';
+import { Grid } from 'antd';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import classes from './index.module.css';
-import { Avatar, Dropdown, Grid } from 'antd';
-import { useActions } from '@/hooks/useAction';
-import Image from 'next/image';
 const { useBreakpoint } = Grid;
 interface HeaderPropsI {
   user: any;
@@ -44,7 +43,7 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
         <div className="flex min-h-[4rem] items-center w-full justify-between">
           <Link
             href={'/'}
-            className=" mr-[1.2rem]">
+            className=" mr-[1.2rem] hidden md:block">
             <Image
               src={'/avatar.jpg'}
               alt="main-avt"

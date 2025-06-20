@@ -165,6 +165,7 @@
   text-align: center;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow above the footer */
   width: 100%;
+  margin-top: calc(2rem + 10vh);
   /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); */
 }
 

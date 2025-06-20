@@ -1,20 +1,9 @@
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
-import Layout from '@/components/layout';
-import Hero from '@/components/layout/Hero';
 import About from '@/components/about';
 import Exprience from '@/components/experience';
-import Works from '@/components/work';
-import Feedbacks from '@/components/feedbacks';
-import StarCanvas from '@/components/starts-canvas';
-import Contact from '@/components/contact';
+import Hero from '@/components/layout/Hero';
 import Skills from '@/components/skills';
-import ShowCase from '@/components/showcase';
+import { Inter } from 'next/font/google';
 import Head from 'next/head';
-import axios from 'axios';
-import http from '@/libs/http';
-import { desc } from 'framer-motion/client';
-import { Metadata } from 'next';
 
 interface Service {
   _id: string;

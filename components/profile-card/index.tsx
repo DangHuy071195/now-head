@@ -144,6 +144,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                   alt={name}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  width={32}
+                  height={32}
                 />
               </motion.div>
 
