@@ -53,7 +53,7 @@ const ComputerCanvas = () => {
   return (
     <div className="w-full flex flex-col sm:flex-col md:flex-row items-center justify-center mt-[4.4rem] gap-[2.4rem] ">
       <ProfileCard
-        avatarUrl="/user-card.jpg"
+        avatarUrl="/user-card.png"
         name="Nguyen Dang Huy"
         title="Middle Frontend Developer"
         handle="ittokid"
