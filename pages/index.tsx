@@ -44,6 +44,11 @@ const Home: React.FC<HomePropsI> = ({ services }) => {
           name="description"
           content={metadata.description}
         />
+        <link
+          rel="icon"
+          href="/js.png"
+          type="image/png"
+        />
       </Head>
       <div style={{}}>
         {/* <ShowCase /> */}
