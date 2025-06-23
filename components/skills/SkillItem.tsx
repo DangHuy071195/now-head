@@ -6,7 +6,6 @@ interface SkillItemProps {
   type: string;
 }
 const SkillItem: React.FC<SkillItemProps> = ({ index, name, type }) => {
-  console.log(`Rendering SkillItem: ${name}, Type: ${type} ${index}`);
   return (
     <>
       <h4>{name}</h4>
