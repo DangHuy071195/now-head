@@ -1,9 +1,6 @@
-import React from 'react';
-
-import classes from './index.module.css';
-import ExperienceCard from './ExperienceCard';
-import { VerticalTimeline } from 'react-vertical-timeline-component';
 import StarCanvas from '../starts-canvas';
+import ExperienceCard from './ExperienceCard';
+import classes from './index.module.css';
 const experiences = [
   {
     isEnd: true,

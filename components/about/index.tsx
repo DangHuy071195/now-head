@@ -1,10 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
+import RotatingText from '../roating-text';
 import ServiceCard from './ServiceCard';
 import classes from './index.module.css';
-import axios from 'axios';
-import RotatingText from '../roating-text';
-import { cn } from '@/utils/cn';
 interface AboutPropsI {
   services?: any[];
 }
