@@ -1,7 +1,7 @@
 .card {
   position: relative;
   z-index: 555;
-  max-width: 20rem;
+  max-width: 25rem;
   min-height: 20rem;
   width: 90%;
   display: grid;

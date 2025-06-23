@@ -51,7 +51,7 @@ const ComputerCanvas = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col sm:flex-col md:flex-row items-center justify-center mt-[4.4rem] gap-[2.4rem] ">
+    <div className="w-full flex flex-col sm:flex-col lg:flex-row items-center justify-between mt-[4.4rem] gap-[2.4rem] ">
       <ProfileCard
         avatarUrl="/user-card.png"
         name="Nguyen Dang Huy"
@@ -64,6 +64,7 @@ const ComputerCanvas = () => {
           following: 162,
           likes: 4.8,
         }}
+        className="flex-1/3 flex-shrink-0"
         onContactClick={(type: string) => {
           if (type === 'email') {
             window.location.href = 'mailto:nguyendanghuy071195@gmail.com';
@@ -73,7 +74,7 @@ const ComputerCanvas = () => {
           }
         }}
       />
-      <div className="min-h-[40rem] h-[40rem] flex-1">
+      <div className="min-h-[40rem] h-[40rem] flex-2/3 flex-shrink flex-grow">
         <Canvas
           frameloop="demand"
           shadows

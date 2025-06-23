@@ -83,7 +83,7 @@ const Hero = () => {
           secondColor="#7C72FF"
           lastColor="#6A5ACD"
         />
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[2.5rem] mt-10 items-center justify-items-center">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[2.5rem] lg:grid-cols-4 mt-10 items-center justify-items-center ">
           <ProjectCard
             color="green"
             progress="70%"
