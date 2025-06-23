@@ -45,6 +45,7 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
             <li>
               <a
                 href="/cv.pdf"
+                aria-label="Download CV"
                 download={'nguyen-huy-cv-middle-fe.pdf'}>
                 <i className="fa-solid fa-folder-arrow-down"></i> About me
               </a>
@@ -54,14 +55,14 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
               <Link
                 href="https://www.facebook.com/huyittos2"
                 target="_blank">
-                <i className="fa-brands fa-facebook"></i>
+                <i className="fa-brands fa-facebook"></i> Facebook
               </Link>
             </li>
             <li>
               <Link
                 href="https://www.linkedin.com/in/huy-nguyen-2209b4165/"
                 target="_blank">
-                <i className="fa-brands fa-linkedin"></i>
+                <i className="fa-brands fa-linkedin"></i> Linkedin
               </Link>
             </li>
             <li>

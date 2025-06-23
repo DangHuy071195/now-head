@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  productionBrowserSourceMaps: true, // Ensures source maps are generated
+
   images: {
     domains: ['next-js-bucket.s3.ap-southeast-1.amazonaws.com', 'images.pexels.com'],
   },
