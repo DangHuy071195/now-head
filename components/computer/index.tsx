@@ -73,7 +73,7 @@ const ComputerCanvas = () => {
           }
         }}
       />
-      <div className="min-h-[40rem] h-[40rem]">
+      <div className="min-h-[40rem] h-[40rem] flex-1">
         <Canvas
           frameloop="demand"
           shadows
