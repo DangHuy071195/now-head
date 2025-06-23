@@ -11,7 +11,7 @@ interface ComputersInterfaceProps {
 }
 
 const Computers: React.FC<ComputersInterfaceProps> = ({ isMobile }) => {
-  const computers = useGLTF('/gaming_desktop_pc/scene.gltf');
+  const computers = useGLTF('/gaming_desktop_pc/scene.gltf', true);
   return (
     <mesh>
       <hemisphereLight

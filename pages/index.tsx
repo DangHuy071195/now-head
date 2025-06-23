@@ -1,10 +1,9 @@
-import { HashLoader } from 'react-spinners';
-import { Inter } from 'next/font/google';
-import Head from 'next/head';
+import Services from '@/components/about';
+import Exprience from '@/components/experience';
 import Hero from '@/components/layout/Hero';
 import Skills from '@/components/skills';
-import Exprience from '@/components/experience';
-import Services from '@/components/about';
+import { Inter } from 'next/font/google';
+import Head from 'next/head';
 
 interface Service {
   _id: string;

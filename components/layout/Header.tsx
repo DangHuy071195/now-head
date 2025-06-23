@@ -1,23 +1,12 @@
-import { useActions } from '@/hooks/useAction';
 import { Grid } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import React from 'react';
 const { useBreakpoint } = Grid;
 interface HeaderPropsI {
   user: any;
 }
 const Header: React.FC<HeaderPropsI> = ({ user }) => {
-  const router = useRouter();
-  // const selector = useTypedSelector((state) => state.user);
-  const { userLogout } = useActions();
-  // const { loading, user: userStore, accessToken, error } = useTypedSelector((state) => state.user);
-
-  const signOutHandler = () => {
-    userLogout();
-  };
-
   const screens = useBreakpoint();
   const isMobile = screens.xs;
   return (
