@@ -96,6 +96,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       ref={cardRef}
       className={`relative w-full max-w-sm transition-all duration-700 opacity-0 transform translate-y-8 ${className}`}
       style={{ perspective: '1200px' }}
+      suppressHydrationWarning
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}>
@@ -211,30 +212,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                 Linkedin
               </motion.button>
             </div>
-
-            {/* Social links */}
-            {socialLinks && (
-              <motion.div
-                className="flex space-x-3 mt-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.9, duration: 0.5 }}>
-                {socialLinks.map((link, index) => (
-                  <motion.a
-                    key={link.platform}
-                    href={link.url}
-                    className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/40 transition-colors"
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.9 }}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.9 + index * 0.1 }}
-                    aria-label={`${name}'s ${link.platform}`}>
-                    <span className="text-white text-sm">{link.icon}</span>
-                  </motion.a>
-                ))}
-              </motion.div>
-            )}
           </div>
         </div>
       </motion.div>

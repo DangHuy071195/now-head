@@ -19,9 +19,9 @@ const ProjectCard: React.FC<ProjectCardPropsI> = ({ color, progress, title, coun
           fill="currentColor"
           className="size-6">
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
         </svg>
       </div>
@@ -63,9 +63,9 @@ const ProjectCard: React.FC<ProjectCardPropsI> = ({ color, progress, title, coun
               fill="currentColor"
               className="size-6">
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
           </a>
