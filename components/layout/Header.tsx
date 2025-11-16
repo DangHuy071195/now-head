@@ -46,7 +46,7 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
               <a
                 href="/cv.pdf"
                 aria-label="Download CV"
-                download={'nguyen-huy-cv-middle-fe.pdf'}>
+                download={'nguyen-dang-huy_cv-fe-dev.pdf'}>
                 <i className="fa-solid fa-folder-arrow-down"></i> About me
               </a>
             </li>

@@ -71,6 +71,17 @@
   margin: 0;
   padding: 0;
 }
+
+/* Ensure custom cursor stays below header */
+#animated-cursor,
+#animated-cursor>*,
+.animated-cursor,
+.animated-cursor>*,
+[class*="cursor"],
+[id*="cursor"] {
+  z-index: 999 !important;
+}
+
 input {
   outline: none;
   color: #232323;
@@ -123,11 +134,11 @@ ul.side-nav__content--social a i:active {
 header#header {
   /* background-color: var(--secondary-color); */
   height: calc(3vw + 3vh);
-  z-index: 2;
   padding: 25px;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Header shadow */
-  border-radius: 8px; /* Optional: rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  /* Header shadow */
+  /* Optional: rounded corners */
   position: sticky;
   top: 0;
   left: 0;
@@ -135,7 +146,7 @@ header#header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 999;
+  /* z-index: 1; */
 }
 
 nav#header__main-nav {
@@ -202,6 +213,7 @@ ul.header__main-nav--links li a:active::after {
 }
 
 @media screen and (max-width: 610px) {
+
   /*-*-*-*-**-*-*-*-**-*-*-*-**-*-*-*-* Main Nav Header *-*-*-*-**-*-*-*-**-*-*-*-**-*/
   header#header {
     position: absolute;
@@ -273,6 +285,7 @@ ul.header__main-nav--links li a:active::after {
   ul.header__main-nav--links li {
     opacity: 0;
   }
+
   ul.header__main-nav--links li a {
     font-size: calc(1.2rem + 0.66667vw);
     text-align: center;

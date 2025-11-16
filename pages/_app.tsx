@@ -15,9 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
         outerAlpha={0}
         innerStyle={{
           backgroundColor: '#ffffff',
+          zIndex: '998',
         }}
         outerStyle={{
           border: '3px solid #f7f7f7',
+          zIndex: '998',
         }}
       />
       <Component {...pageProps} />

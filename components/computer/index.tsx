@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, memo } from 'react';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
-import { GUI } from 'lil-gui'; // Import GUI directly from lil-gui
-import { div } from 'three/webgpu';
 import ProfileCard from '../profile-card';
 
 interface ComputersInterfaceProps {
   isMobile: boolean;
 }
 
-const Computers: React.FC<ComputersInterfaceProps> = ({ isMobile }) => {
+const Computers: React.FC<ComputersInterfaceProps> = memo(({ isMobile }) => {
   const computers = useGLTF('/gaming_desktop_pc/scene.gltf', true);
+
+  const scale = useMemo(() => (isMobile ? 0.5 : 0.65), [isMobile]);
+  const position = useMemo(() => (isMobile ? [0, -1, 0] : [0, -3.25, -1.5]), [isMobile]) as [number, number, number];
 
   return (
     <mesh>
@@ -30,15 +31,17 @@ const Computers: React.FC<ComputersInterfaceProps> = ({ isMobile }) => {
       />
       <primitive
         object={computers.scene}
-        scale={isMobile ? 0.5 : 0.65}
-        position={isMobile ? [0, -1, 0] : [0, -3.25, -1.5]}
+        scale={scale}
+        position={position}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
   );
-};
+});
 
-const ComputerCanvas = () => {
+Computers.displayName = 'Computers';
+
+const ComputerCanvas = memo(() => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -50,6 +53,18 @@ const ComputerCanvas = () => {
       return () => mediaQuery.removeEventListener('change', handleMediaQueryChange);
     }
   }, []);
+
+  const handleContactClick = useMemo(
+    () => (type: string) => {
+      if (type === 'email') {
+        window.location.href = 'mailto:nguyendanghuy071195@gmail.com';
+      }
+      if (type === 'linkedin') {
+        window.open('https://www.linkedin.com/in/huy-nguyen-2209b4165/', '_blank');
+      }
+    },
+    []
+  );
 
   return (
     <div className="w-full flex flex-col sm:flex-col lg:flex-row items-center justify-between mt-[4.4rem] gap-[2.4rem] ">
@@ -66,14 +81,7 @@ const ComputerCanvas = () => {
           likes: 4.8,
         }}
         className="flex-1/3 flex-shrink-0"
-        onContactClick={(type: string) => {
-          if (type === 'email') {
-            window.location.href = 'mailto:nguyendanghuy071195@gmail.com';
-          }
-          if (type === 'linkedin') {
-            window.open('https://www.linkedin.com/in/huy-nguyen-2209b4165/', '_blank');
-          }
-        }}
+        onContactClick={handleContactClick}
       />
       <div className="min-h-[40rem] h-[40rem] flex-2/3 flex-shrink flex-grow">
         <Canvas
@@ -95,6 +103,8 @@ const ComputerCanvas = () => {
       </div>
     </div>
   );
-};
+});
+
+ComputerCanvas.displayName = 'ComputerCanvas';
 
 export default ComputerCanvas;
