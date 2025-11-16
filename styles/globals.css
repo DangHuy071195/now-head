@@ -72,14 +72,33 @@
   padding: 0;
 }
 
-/* Ensure custom cursor stays below header */
+/* Add padding to body to account for fixed header */
+body {
+  padding-top: calc(3vw + 3vh);
+}
+
+/* Ensure custom cursor stays above everything */
+html body>div[style*="pointer-events"],
+html body>div[style*="border-radius"],
+html body div[style*="pointer-events: none"],
+html body div[style*="position: fixed"][style*="transform"],
 #animated-cursor,
 #animated-cursor>*,
 .animated-cursor,
-.animated-cursor>*,
-[class*="cursor"],
-[id*="cursor"] {
-  z-index: 999 !important;
+.animated-cursor>* {
+  z-index: 10000 !important;
+  position: fixed !important;
+}
+
+html body>div[style*="pointer-events: none"][style*="position: fixed"] {
+  z-index: 10000 !important;
+  position: fixed !important;
+}
+
+body>div[style*="position: fixed"][style*="width"][style*="height"][style*="transform"] {
+  z-index: 10000 !important;
+  position: fixed !important;
+  pointer-events: none !important;
 }
 
 input {
@@ -139,14 +158,24 @@ header#header {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   /* Header shadow */
   /* Optional: rounded corners */
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* z-index: 1; */
+  z-index: 1000;
+  background-color: #2c2f35;
+  transition: transform 0.3s ease-in-out;
+}
+
+header#header.header-hidden {
+  transform: translateY(-100%);
+}
+
+header#header.header-visible {
+  transform: translateY(0);
 }
 
 nav#header__main-nav {

@@ -1,7 +1,7 @@
 import { Grid } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 const { useBreakpoint } = Grid;
 interface HeaderPropsI {
   user: any;
@@ -9,10 +9,38 @@ interface HeaderPropsI {
 const Header: React.FC<HeaderPropsI> = ({ user }) => {
   const screens = useBreakpoint();
   const isMobile = screens.xs;
+  const [scrollY, setScrollY] = useState(0);
+  const [headerClass, setHeaderClass] = useState('header-visible');
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 50) {
+        // At top of page, always show header
+        setHeaderClass('header-visible');
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide header
+        setHeaderClass('header-hidden');
+      } else {
+        // Scrolling up - show header
+        setHeaderClass('header-visible');
+      }
+
+      lastScrollY = currentScrollY;
+      setScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <header
       id="header"
-      className="shadow-sm bg-[#2c2f35]">
+      className={`shadow-sm bg-[#2c2f35] ${headerClass}`}>
       <nav
         id="header__main-nav"
         className="flex justify-center w-full items-center"
