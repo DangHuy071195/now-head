@@ -50,7 +50,6 @@ const Header: React.FC<HeaderPropsI> = ({ user }) => {
                 <i className="fa-solid fa-folder-arrow-down"></i> About me
               </a>
             </li>
-
             <li>
               <Link
                 href="https://www.facebook.com/huyittos2"
