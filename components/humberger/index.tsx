@@ -1,34 +1,26 @@
 // components/HamburgerMenu.js
 import { useState, useEffect } from 'react';
-import styles from './HamburgerMenu.module.css';
 import Link from 'next/link';
+
 const HamburgerMenu = () => {
   const menuItems = ['Home', 'About', 'Tech', 'Job'];
 
   return (
-    <div className={styles['header__main-nav']}>
-      {/* <input type="checkbox" />
-      <div className={styles['header__main-nav--hamburger']}>
-        <div></div>
-      </div> */}
-      <div className={styles['header__main-nav--menu']}>
-        <div>
-          <div>
-            <ul>
-              {menuItems.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    href="/"
-                    className={styles['nav-link']}>
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+    <nav className="flex items-center">
+      <div className="flex items-center gap-6">
+        <ul className="flex gap-6">
+          {menuItems.map((item, index) => (
+            <li key={index}>
+              <Link
+                href="/"
+                className="text-white hover:text-purple-400 transition-colors">
+                {item}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -1,9 +1,11 @@
-import Services from '@/components/about';
-import Exprience from '@/components/experience';
+import dynamic from 'next/dynamic';
 import Hero from '@/components/layout/Hero';
-import Skills from '@/components/skills';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
+
+const Services = dynamic(() => import('@/components/about'), { ssr: false });
+const Exprience = dynamic(() => import('@/components/experience'), { ssr: false });
+const Skills = dynamic(() => import('@/components/skills'), { ssr: false });
 
 interface Service {
   _id: string;

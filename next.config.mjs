@@ -1,10 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  productionBrowserSourceMaps: true, // Ensures source maps are generated
+  productionBrowserSourceMaps: false, // Disable source maps in production for smaller bundles
+  
+  // Performance optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
 
   images: {
-    domains: ['next-js-bucket.s3.ap-southeast-1.amazonaws.com', 'images.pexels.com'],
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'next-js-bucket.s3.ap-southeast-1.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+      },
+    ],
   },
   transpilePackages: [
     'antd',

@@ -143,10 +143,10 @@ const MainLayout: React.FC<LayoutPropsI> = (props) => {
   ];
   return (
     <>
-      <UserHeader user={null} />
-      <div className="flex max-w-[70vw] mx-auto justify-center">
+      <UserHeader />
+      <div className="flex justify-center">
         {/* <SideNav /> */}
-        <div className="flex-1 bg-primary relative z-0 flex flex-col min-h-[100vh]  m-auto px-[24px]">
+        <div className="flex-1 relative z-0 flex flex-col min-h-[100vh] px-[24px]">
           {/* <NavBar /> */}
           <ToastContainer />
           {props.children}

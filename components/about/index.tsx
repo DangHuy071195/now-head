@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import RotatingText from '../roating-text';
 import ServiceCard from './ServiceCard';
-import classes from './index.module.css';
+
 interface AboutPropsI {
   services?: any[];
 }
@@ -41,28 +41,29 @@ const services = [
 ];
 const Services: React.FC<AboutPropsI> = (props) => {
   return (
-    <section className="max-w-[70vw] mx-auto">
+    <section className="max-w-[95vw] md:max-w-[80vw] mx-auto px-4 md:px-0 py-10 md:py-20">
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5 }}>
-        <div className="flex flex-col sm:flex-row items-center gap-[1.2rem] justify-center py-[2.4rem] md:py-[4.4rem]">
-          <p className="text-[2.4rem] text-white h-[4.8rem] leading-[4.8rem] uppercase">MY TECHNICAL</p>
+        <div className="flex flex-col sm:flex-row items-center gap-[1.2rem] justify-center mb-12 md:mb-16">
+          <p className="text-3xl md:text-6xl font-bold text-white text-center sm:text-left uppercase leading-tight">MY TECHNICAL</p>
           <RotatingText
             texts={['WEB', 'MOBILE APP', 'CHROME EXTENSION']}
-            mainClassName="px-2 sm:px-2 md:px-3 bg-violet-700 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg text-[2.4rem] text-white"
+            mainClassName="px-3 sm:px-4 py-2 bg-violet-700 text-black overflow-hidden justify-center rounded-lg text-2xl md:text-3xl font-bold text-white shadow-lg"
             staggerFrom={'last'}
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             exit={{ y: '-120%' }}
             staggerDuration={0.025}
-            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+            splitLevelClassName="overflow-hidden pb-1"
             transition={{ type: 'spring', damping: 30, stiffness: 400 }}
             rotationInterval={2000}
           />
         </div>
         <div
-          className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-[3.5rem] items-center justify-items-center ${classes.services}`}>
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 justify-items-center">
           {services?.map((service, index) => (
             <ServiceCard
               id={service.id}

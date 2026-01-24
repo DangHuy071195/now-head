@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './index.module.css';
+
 const SearchInput = () => {
   return (
     <div className="relative  max-w-[40vw] flex-1">

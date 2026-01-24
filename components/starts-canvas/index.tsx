@@ -82,13 +82,16 @@ const RandomStar = () => {
 
 const StarCanvas = () => {
   const starsArray = useMemo(() => {
-    return new Array(400).fill(null).map((_, i) => <RandomStar key={i} />);
+    return new Array(200).fill(null).map((_, i) => <RandomStar key={i} />); // Reduced from 400 to 200
   }, []);
 
   return (
     <Canvas
       className="absolute inset-0 z-0"
-      style={{ position: 'absolute' }}>
+      style={{ position: 'absolute' }}
+      dpr={[1, 1.5]} // Limit pixel ratio for better performance
+      performance={{ min: 0.5 }} // Performance settings
+    >
       <ambientLight intensity={0.5} />
       {starsArray}
     </Canvas>

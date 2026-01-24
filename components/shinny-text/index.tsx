@@ -23,7 +23,7 @@ const ShinyText: React.FC<ShinyTextProps> = ({
 
   return (
     <div
-      className={`text-[#b5b5b5a4] bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
+      className={`text-[#b5b5b5a4] bg-clip-text inline-block break-words ${disabled ? '' : 'animate-shine'} ${className}`}
       style={{
         backgroundImage: `linear-gradient(120deg, ${baseColor} 40%, ${secondColor} 50%, ${lastColor} 60%)`,
         backgroundSize: '200% 100%',

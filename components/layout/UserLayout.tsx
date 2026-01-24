@@ -9,10 +9,10 @@ interface LayoutPropsI {
 const UserLayout: React.FC<LayoutPropsI> = (props) => {
   return (
     <>
-      <Header user={null} />
+      <Header />
       <div className="flex">
         {/* <SideNav /> */}
-        <div className="flex-1 bg-primary relative z-0 flex flex-col min-h-[100vh] m-auto px-[24px]">
+        <div className="flex-1 bg-background relative z-0 flex flex-col min-h-[100vh] m-auto px-4 md:px-[24px]">
           {/* <NavBar /> */}
           <ToastContainer />
           {props.children}

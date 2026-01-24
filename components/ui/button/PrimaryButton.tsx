@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './button.module.css';
+
 interface PrimaryButtonPropsI {
   children: React.ReactNode;
   icon?: string;
@@ -12,7 +12,7 @@ interface PrimaryButtonPropsI {
 const PrimaryButton: React.FC<PrimaryButtonPropsI> = ({ children, icon, size, type, style, onClick }) => {
   return (
     <button
-      className={classes.btn}
+      className="bg-[#2e2c2f] text-white border-none px-5 py-2 rounded cursor-pointer max-w-[15rem] mt-10 ml-auto text-xl transition-all duration-200 hover:opacity-80 active:shadow-[1px_0_0.8rem_1px_rgba(209,128,242,0.75)]"
       style={style}
       onClick={onClick}
       type={type}>
