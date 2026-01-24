@@ -20,7 +20,7 @@ const otherKnowledge = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="flex flex-wrap justify-center p-[calc(1rem+2vw)] max-w-[95vw] md:max-w-[70vw] mx-auto">
+    <section id="skills" className="flex flex-wrap justify-center px-4 py-8 md:p-[calc(1rem+2vw)] max-w-[95vw] md:max-w-[70vw] mx-auto">
       <div className="p-4 md:p-[calc(1rem+2vw)] basis-full md:basis-[40rem] flex-grow">
         <h3 className="text-center">
           <ShinyText

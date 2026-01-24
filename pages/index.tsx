@@ -20,7 +20,7 @@ interface HomePropsI {
 
 export const metadata = {
   title: 'Huy Nguyen - React/NextJs Developer',
-  description: `I'm Huy Nguyen -  Fontend Developer with 4 years of experience in web development.`,
+  description: `I'm Huy Nguyen -  Fontend Developer with 5 years of experience in web development.`,
   openGraph: {
     images: [
       {

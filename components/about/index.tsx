@@ -41,7 +41,7 @@ const services = [
 ];
 const Services: React.FC<AboutPropsI> = (props) => {
   return (
-    <section className="max-w-[95vw] md:max-w-[80vw] mx-auto px-4 md:px-0 py-10 md:py-20">
+    <section className="w-full max-w-[95vw] md:max-w-[80vw] mx-auto px-4 md:px-6 py-8 md:py-20">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

@@ -98,7 +98,7 @@ const Exprience = () => {
         <h2 className={`font-black tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-[#aaa6c3] text-center text-3xl md:text-6xl font-bold mb-12 md:mb-16`}>What i have done so far</h2>
       </motion.div>
       {/* <h2 className={classes.title}>Work Experience</h2> */}
-      <div className="flex flex-col items-start w-full max-w-[95vw] md:max-w-[60rem] mx-auto pb-16">
+      <div className="flex flex-col items-start w-full max-w-[95vw] md:max-w-[60rem] mx-auto pb-8 md:pb-16 px-4 md:px-0">
         {experiences.map((experience, index) => (
           <ExperienceCard
             key={index}

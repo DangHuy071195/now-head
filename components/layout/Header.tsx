@@ -121,7 +121,7 @@ const Header = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 20 }}
-              className="fixed right-0 top-0 bottom-0 w-[300px] bg-background/95 backdrop-blur-xl border-l border-border z-[102] p-6 flex flex-col shadow-2xl"
+              className="fixed right-0 top-0 bottom-0 w-[85vw] max-w-[320px] bg-background/95 backdrop-blur-xl border-l border-border z-[102] p-6 flex flex-col shadow-2xl"
             >
               <div className="flex justify-between items-center mb-8">
                 <span className="text-xl font-bold text-foreground">Menu</span>

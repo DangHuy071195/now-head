@@ -87,7 +87,7 @@ const Hero = () => {
                 text="Hello, I'm Huy."
                 disabled={false}
                 speed={3}
-                className="custom-class text-2xl md:text-6xl lg:text-7xl font-bold"
+                className="custom-class text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold"
                 baseColor="#7C72FF"
                 secondColor="#722bd6"
                 lastColor="#2a1ce6"
@@ -101,7 +101,7 @@ const Hero = () => {
               <motion.li variants={itemVariants} className="flex items-start gap-4 text-sm md:text-lg leading-relaxed text-gray-300">
                 <Code2 className="w-5 h-5 md:w-6 md:h-6 text-purple-400 mt-1 flex-shrink-0" />
                 <span>
-                  I'm a React Developer with over 4 years of experience in web development, specializing in building
+                  I'm a React Developer with over 5 years of experience in web development, specializing in building
                   user interfaces and web applications using React JS, Next JS, and TypeScript.
                 </span>
               </motion.li>

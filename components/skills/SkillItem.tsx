@@ -12,8 +12,7 @@ const SkillItem: React.FC<SkillItemProps> = ({ name, progress, type, index }) =>
   return (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-2">
-        <h4 className="text-2xl md:text-xl text-white font-medium">{name}</h4>
-        <span className="text-purple-400 font-semibold text-sm md:text-base">{progress}%</span>
+        <h4 className="text-xl md:text-xl text-white font-medium">{name}</h4>
       </div>
       <div className="h-3 w-full bg-[#1d1836]/80 rounded-full overflow-hidden relative backdrop-blur-sm">
         <motion.div
