@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.env.local
+.DS_Store
+*.log
+coverage
+.vscode
+.idea
+PERFORMANCE_REPORT.md
+LCP_IMPROVEMENT_PLAN.md
